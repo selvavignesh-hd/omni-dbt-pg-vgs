@@ -117,6 +117,8 @@ models:
     description: "Number of TV shows"
   - name: years_spanned
     description: "Number of distinct release years"
+  - name: initial_release_year
+    description: "Initial release year"
   - name: earliest_release_year
     description: "Earliest release year"
   - name: latest_release_year
