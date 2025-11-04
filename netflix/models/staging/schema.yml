@@ -126,6 +126,8 @@ models:
   - name: percentage_of_total
     description: "Percentage of total content from this country"
 
+  - name: another_release_year
+    description: Another release year
 - name: content_by_rating
   description: "Statistics aggregated by content rating"
   columns:
