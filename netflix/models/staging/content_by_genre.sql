@@ -20,6 +20,7 @@ with genre_expanded as (
 select
     genre,
     count(*) as total_content,
+    count(*) as total_content_from_local_change,
     count(distinct show_id) as unique_titles,
     count(case when type = 'Movie' then 1 end) as movies_count,
     count(case when type = 'TV Show' then 1 end) as tv_shows_count,
