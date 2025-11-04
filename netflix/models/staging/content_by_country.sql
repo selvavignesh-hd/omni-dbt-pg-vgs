@@ -17,6 +17,7 @@ with country_expanded as (
 
 select
     country_name as country,
+    country_name as country_fullname,
     count(*) as total_content,
     count(distinct show_id) as unique_titles,
     count(case when type = 'Movie' then 1 end) as movies_count,
