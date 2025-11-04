@@ -54,7 +54,7 @@ models:
   description: "Aggregated statistics of content added to Netflix by date"
   columns:
   - name: date_added
-    description: "Date when content was added"
+    description: "Date when content was added in netflix data"
   - name: month_added
     description: "Month when content was added (truncated to month)"
   - name: year_added
