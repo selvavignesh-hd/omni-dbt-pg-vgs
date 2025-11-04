@@ -56,7 +56,7 @@ models:
   - name: date_added
     description: "Date when content was added in netflix data"
   - name: month_added
-    description: "Month when content was added (truncated to month)"
+    description: Month when content was added (truncated to month) in netflix cloud
   - name: year_added
     description: "Year when content was added (truncated to year)"
   - name: total_added
