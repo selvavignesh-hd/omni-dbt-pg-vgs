@@ -1,0 +1,319 @@
+version: 2
+
+metrics:
+# Revenue Metrics
+- name: total_revenue
+  description: "Total revenue from ticket sales"
+  type: simple
+  type_params:
+    measure: total_revenue
+  label: "Total Revenue"
+
+- name: gross_revenue
+  description: "Gross revenue before discounts"
+  type: simple
+  type_params:
+    measure: gross_revenue
+  label: "Gross Revenue"
+
+# - name: net_revenue
+#   description: "Net revenue after discounts and refunds"
+#   type: simple
+#   type_params:
+#     measure: net_revenue
+#   # type: derived
+#   # type_params:
+#   #   expr: "{{ metric('total_revenue') }} - {{ metric('total_discounts') }} - {{ metric('total_refunds') }}"
+#   label: "Net Revenue"
+
+- name: avg_ticket_price
+  description: "Average ticket price"
+  type: simple
+  type_params:
+    measure: avg_ticket_price
+  label: "Average Ticket Price"
+
+- name: median_ticket_price
+  description: "Median ticket price"
+  type: simple
+  type_params:
+    measure: median_ticket_price
+  label: "Median Ticket Price"
+
+# Volume Metrics
+- name: total_tickets_sold
+  description: "Total number of tickets sold"
+  type: simple
+  type_params:
+    measure: total_tickets
+  label: "Total Tickets Sold"
+
+- name: unique_customers
+  description: "Number of unique customers who purchased tickets"
+  type: simple
+  type_params:
+    measure: unique_customers
+  label: "Unique Customers"
+
+- name: unique_events
+  description: "Number of unique events with ticket sales"
+  type: simple
+  type_params:
+    measure: unique_events
+  label: "Unique Events"
+
+- name: unique_orders
+  description: "Number of unique orders"
+  type: simple
+  type_params:
+    measure: unique_orders
+  label: "Unique Orders"
+  # Conversion Metrics
+  # - name: conversion_rate
+  #   description: "Percentage of bookings that were confirmed"
+  #   type: simple
+  #   type_params:
+  #     measure: conversion_rate
+  #   label: "Conversion Rate (%)"
+  # type: derived
+  # type_params:
+  #   expr: "{{ metric('confirmed_bookings') }} / {{ metric('total_tickets_sold') }} * 100"
+
+  # - name: cancellation_rate
+  #   description: "Percentage of bookings that were cancelled"
+  #   type: simple
+  #   type_params:
+  #     measure: cancellation_rate
+  #   # type: derived
+  #   # type_params:
+  #   # type_params:
+  #   #   expr: "{{ metric('cancelled_bookings') }} / {{ metric('total_tickets_sold') }} * 100"
+  #   label: "Cancellation Rate (%)"
+
+  # - name: refund_rate
+  #   description: "Percentage of tickets that were refunded"
+  #   type: simple
+  #   type_params:
+  #     measure: refund_rate
+  #   # type: derived
+  #   # type_params:
+  #   # type_params:
+  #   #   expr: "{{ metric('tickets_refunded') }} / {{ metric('total_tickets_sold') }} * 100"
+  #   label: "Refund Rate (%)"
+
+  # Discount Metrics
+- name: total_discounts
+  description: "Total discount amount applied"
+  type: simple
+  type_params:
+    measure: total_discounts
+  label: "Total Discounts"
+
+- name: tickets_with_discount
+  description: "Number of tickets with discount applied"
+  type: simple
+  type_params:
+    measure: tickets_with_discount
+  label: "Tickets with Discount"
+
+# - name: discount_rate
+#   description: "Percentage of tickets with discount applied"
+#   type: simple
+#   type_params:
+#     measure: discount_rate
+#   # type: derived
+#   # type_params:
+#   #   expr: "{{ metric('tickets_with_discount') }} / {{ metric('total_tickets_sold') }} * 100"
+#   label: "Discount Rate (%)"
+
+# - name: avg_discount_amount
+#   description: "Average discount amount per ticket"
+#   type: simple
+#   type_params:
+#     measure: avg_discount_amount
+#   # type: derived
+#   # type_params:
+#   #   expr: "{{ metric('total_discounts') }} / {{ metric('tickets_with_discount') }}"
+#   label: "Average Discount Amount"
+
+# Refund Metrics
+- name: total_refunds
+  description: "Total refund amount"
+  type: simple
+  type_params:
+    measure: total_refunds
+  label: "Total Refunds"
+
+- name: tickets_refunded
+  description: "Number of tickets refunded"
+  type: simple
+  type_params:
+    measure: tickets_refunded
+  label: "Tickets Refunded"
+
+# - name: avg_refund_amount
+#   description: "Average refund amount per ticket"
+#   type: simple
+#   type_params:
+#     measure: avg_refund_amount
+#   # type: derived
+#   # type_params:
+#   # type_params:
+#   #   expr: "{{ metric('total_refunds') }} / {{ metric('tickets_refunded') }}"
+#   label: "Average Refund Amount"
+
+# Booking Status Metrics
+- name: confirmed_bookings
+  description: "Number of confirmed bookings"
+  type: simple
+  type_params:
+    measure: confirmed_bookings
+  label: "Confirmed Bookings"
+
+- name: pending_bookings
+  description: "Number of pending bookings"
+  type: simple
+  type_params:
+    measure: pending_bookings
+  label: "Pending Bookings"
+
+- name: cancelled_bookings
+  description: "Number of cancelled bookings"
+  type: simple
+  type_params:
+    measure: cancelled_bookings
+  label: "Cancelled Bookings"
+
+- name: active_tickets
+  description: "Number of active tickets"
+  type: simple
+  type_params:
+    measure: active_tickets
+  label: "Active Tickets"
+
+# Time-based Metrics
+- name: avg_days_advance_purchase
+  description: "Average days between purchase and event"
+  type: simple
+  type_params:
+    measure: avg_days_advance_purchase
+  label: "Average Days Advance Purchase"
+
+- name: min_days_advance_purchase
+  description: "Minimum days between purchase and event"
+  type: simple
+  type_params:
+    measure: min_days_advance_purchase
+  label: "Minimum Days Advance Purchase"
+
+- name: max_days_advance_purchase
+  description: "Maximum days between purchase and event"
+  type: simple
+  type_params:
+    measure: max_days_advance_purchase
+  label: "Maximum Days Advance Purchase"
+
+# # Customer Metrics
+# - name: avg_tickets_per_customer
+#   description: "Average number of tickets per customer"
+#   type: simple
+#   type_params:
+#     measure: avg_tickets_per_customer
+#   # type: derived
+#   # type_params:
+#   # type_params:
+#   #   expr: "{{ metric('total_tickets_sold') }} / {{ metric('unique_customers') }}"
+#   label: "Average Tickets per Customer"
+
+# - name: avg_tickets_per_order
+#   description: "Average number of tickets per order"
+#   type: simple
+#   type_params:
+#     measure: avg_tickets_per_order
+#   # type: derived
+#   # type_params:
+#   # type_params:
+#   #   expr: "{{ metric('total_tickets_sold') }} / {{ metric('unique_orders') }}"
+#   label: "Average Tickets per Order"
+
+# - name: avg_tickets_per_event
+#   description: "Average number of tickets sold per event"
+#   type: simple
+#   type_params:
+#     measure: avg_tickets_per_event
+#   # type: derived
+#   # type_params:
+#   # type_params:
+#   #   expr: "{{ metric('total_tickets_sold') }} / {{ metric('unique_events') }}"
+#   label: "Average Tickets per Event"
+
+# # Revenue per Customer Metrics
+# - name: revenue_per_customer
+#   description: "Average revenue per customer"
+#   type: simple
+#   type_params:
+#     measure: revenue_per_customer
+#   # type: derived
+#   # type_params:
+#   #   expr: "{{ metric('total_revenue') }} / {{ metric('unique_customers') }}"
+#   label: "Revenue per Customer"
+
+# - name: revenue_per_order
+#   description: "Average revenue per order"
+#   type: simple
+#   type_params:
+#     measure: revenue_per_order
+#   # type: derived
+#   # type_params:
+#   #   expr: "{{ metric('total_revenue') }} / {{ metric('unique_orders') }}"
+#   # type_params:
+#   #   expr: "{{ metric('total_revenue') }} / {{ metric('unique_orders') }}"
+#   label: "Revenue per Order"
+
+# - name: revenue_per_event
+#   description: "Average revenue per event"
+#   type: simple
+#   type_params:
+#     measure: revenue_per_event
+#   # type: derived
+#   # type_params:
+#   #   expr: "{{ metric('total_revenue') }} / {{ metric('unique_events') }}"
+#   # type_params:
+#   #   expr: "{{ metric('total_revenue') }} / {{ metric('unique_events') }}"
+#   label: "Revenue per Event"
+
+# # Growth Metrics (requires time-based analysis)
+# - name: revenue_growth_rate
+#   description: "Month-over-month revenue growth rate"
+#   type: simple
+#   type_params:
+#     measure: revenue_growth_rate
+#   # type: derived
+#   # type_params:
+#   # type_params:
+#   #   expr: "({{ metric('total_revenue') }} - LAG({{ metric('total_revenue') }}, 1) OVER (ORDER BY purchase_month)) / LAG({{ metric('total_revenue') }}, 1) OVER (ORDER BY purchase_month) * 100"
+#   label: "Revenue Growth Rate (%)"
+
+# - name: ticket_sales_growth_rate
+#   description: "Month-over-month ticket sales growth rate"
+#   type: simple
+#   type_params:
+#     measure: ticket_sales_growth_rate
+#   # type: derived
+#   # type_params:
+#   # type_params:
+#   #   expr: "({{ metric('total_tickets_sold') }} - LAG({{ metric('total_tickets_sold') }}, 1) OVER (ORDER BY purchase_month)) / LAG({{ metric('total_tickets_sold') }}, 1) OVER (ORDER BY purchase_month) * 100"
+#   label: "Ticket Sales Growth Rate (%)"
+
+# - name: customer_growth_rate
+#   description: "Month-over-month customer growth rate"
+#   type: simple
+#   type_params:
+#     measure: customer_growth_rate
+#   # type: derived
+#   # type_params:
+#   # type_params:
+#   #   expr: "({{ metric('unique_customers') }} - LAG({{ metric('unique_customers') }}, 1) OVER (ORDER BY purchase_month)) / LAG({{ metric('unique_customers') }}, 1) OVER (ORDER BY purchase_month) * 100"
+#   # type_params:
+#   #   expr: "({{ metric('unique_customers') }} - LAG({{ metric('unique_customers') }}, 1) OVER (ORDER BY purchase_month)) / LAG({{ metric('unique_customers') }}, 1) OVER (ORDER BY purchase_month) * 100"
+#   label: "Customer Growth Rate (%)"

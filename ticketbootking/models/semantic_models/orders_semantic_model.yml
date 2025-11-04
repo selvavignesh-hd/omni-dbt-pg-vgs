@@ -1,0 +1,270 @@
+version: 2
+
+semantic_models:
+- name: orders
+  description: "Semantic model for order analytics with comprehensive datetime dimensions"
+  model: ref('fact_orders')
+
+  defaults:
+    agg_time_dimension: order_datetime
+
+  entities:
+  - name: order
+    type: primary
+    expr: order_id
+    description: "Unique identifier for each order"
+
+  - name: customer
+    type: foreign
+    expr: customer_id
+    description: "Foreign key to customers table"
+
+  - name: event
+    type: foreign
+    expr: event_id
+    description: "Foreign key to events table"
+
+  dimensions:
+  # Date and time dimensions
+  - name: order_date
+    type: time
+    type_params:
+      time_granularity: day
+    expr: order_date_truncated
+    description: "Date when order was placed"
+
+  - name: order_week
+    type: time
+    type_params:
+      time_granularity: week
+    expr: order_week
+    description: "Week when order was placed"
+
+  - name: order_month
+    type: time
+    type_params:
+      time_granularity: month
+    expr: order_month
+    description: "Month when order was placed"
+
+  - name: order_quarter
+    type: time
+    type_params:
+      time_granularity: quarter
+    expr: order_quarter
+    description: "Quarter when order was placed"
+
+  - name: order_year
+    type: time
+    type_params:
+      time_granularity: year
+    expr: order_year
+    description: "Year when order was placed"
+
+  - name: order_datetime
+    type: time
+    type_params:
+      time_granularity: day
+    expr: order_datetime
+    description: "Full datetime when order was placed"
+
+  - name: payment_date
+    type: time
+    type_params:
+      time_granularity: day
+    expr: payment_date_truncated
+    description: "Date when payment was made"
+
+  - name: fulfillment_date
+    type: time
+    type_params:
+      time_granularity: day
+    expr: fulfillment_date
+    description: "Date when order was fulfilled"
+
+  - name: cancellation_date
+    type: time
+    type_params:
+      time_granularity: day
+    expr: cancellation_date
+    description: "Date when order was cancelled"
+
+  # Categorical dimensions
+  - name: order_status
+    type: categorical
+    expr: order_status
+    description: "Status of the order"
+
+  - name: payment_status
+    type: categorical
+    expr: payment_status
+    description: "Payment status of the order"
+
+  - name: fulfillment_status
+    type: categorical
+    expr: fulfillment_status
+    description: "Fulfillment status of the order"
+
+  - name: payment_method
+    type: categorical
+    expr: payment_method
+    description: "Payment method used"
+
+  - name: payment_gateway
+    type: categorical
+    expr: payment_gateway
+    description: "Payment gateway used"
+
+  - name: order_source
+    type: categorical
+    expr: order_source
+    description: "Source of the order"
+
+  - name: event_type
+    type: categorical
+    expr: event_type
+    description: "Type of event"
+
+  - name: category
+    type: categorical
+    expr: category
+    description: "Event category"
+
+  - name: venue_city
+    type: categorical
+    expr: venue_city
+    description: "City where the event is held"
+
+  - name: venue_state
+    type: categorical
+    expr: venue_state
+    description: "State where the event is held"
+
+  - name: venue_country
+    type: categorical
+    expr: venue_country
+    description: "Country where the event is held"
+
+  - name: customer_tier
+    type: categorical
+    expr: customer_tier
+    description: "Customer loyalty tier"
+
+  - name: order_season
+    type: categorical
+    expr: order_season
+    description: "Season when order was placed"
+
+  - name: order_time_of_day
+    type: categorical
+    expr: order_time_of_day
+    description: "Time of day when order was placed"
+
+  - name: order_day_of_week
+    type: categorical
+    expr: order_day_of_week
+    description: "Day of week when order was placed"
+
+  - name: order_priority
+    type: categorical
+    expr: order_priority
+    description: "Priority level of the order"
+
+  measures:
+  # Count measures
+  - name: total_orders
+    agg: count
+    description: "Total number of orders"
+
+  - name: unique_customers
+    agg: count_distinct
+    expr: customer_id
+    description: "Number of unique customers"
+
+  - name: unique_events
+    agg: count_distinct
+    expr: event_id
+    description: "Number of unique events"
+
+  # Financial measures
+  - name: total_revenue
+    agg: sum
+    expr: total_amount
+    description: "Total revenue from orders"
+
+  - name: total_subtotal
+    agg: sum
+    expr: subtotal
+    description: "Total subtotal amount"
+
+  - name: total_tax
+    agg: sum
+    expr: tax_amount
+    description: "Total tax amount"
+
+  - name: total_discounts
+    agg: sum
+    expr: discount_amount
+    description: "Total discount amount"
+
+  - name: total_shipping
+    agg: sum
+    expr: shipping_fee
+    description: "Total shipping fees"
+
+  - name: total_refunds
+    agg: sum
+    expr: refund_amount
+    description: "Total refund amount"
+
+  - name: avg_order_value
+    agg: average
+    expr: total_amount
+    description: "Average order value"
+
+  - name: median_order_value
+    agg: median
+    expr: total_amount
+    description: "Median order value"
+
+  # Conditional measures
+  - name: orders_with_discount
+    agg: sum
+    expr: case when has_discount = true then 1 else 0 end
+    description: "Number of orders with discount"
+
+  - name: orders_with_refund
+    agg: sum
+    expr: case when has_refund = true then 1 else 0 end
+    description: "Number of orders with refund"
+
+  - name: completed_orders
+    agg: sum
+    expr: case when is_completed = true then 1 else 0 end
+    description: "Number of completed orders"
+
+  - name: cancelled_orders
+    agg: sum
+    expr: case when is_cancelled = true then 1 else 0 end
+    description: "Number of cancelled orders"
+
+  - name: paid_orders
+    agg: sum
+    expr: case when is_paid = true then 1 else 0 end
+    description: "Number of paid orders"
+
+  # Time-based measures
+  - name: avg_hours_to_payment
+    agg: average
+    expr: hours_between_order_and_payment
+    description: "Average hours between order and payment"
+
+  - name: avg_hours_to_fulfillment
+    agg: average
+    expr: hours_between_payment_and_fulfillment
+    description: "Average hours between payment and fulfillment"
+
+  - name: avg_days_to_event
+    agg: average
+    expr: days_between_order_and_event
+    description: "Average days between order and event"

@@ -1,0 +1,65 @@
+version: 2
+
+models:
+- name: player_selection
+  description: "Base model for player selection data with transformations and data cleaning"
+  columns:
+  - name: id
+    description: "Unique identifier for each player"
+    tests:
+    - not_null
+    - unique
+  - name: name_clean
+    description: "Cleaned and standardized player name"
+    tests:
+    - not_null
+  - name: area_clean
+    description: "Cleaned and standardized area code"
+    tests:
+    - not_null
+  - name: status_clean
+    description: "Cleaned and standardized status"
+    tests:
+    - not_null
+    - accepted_values:
+        values: [ 'APPLIED', 'PROCESSING', 'APPROVED', 'REJECTED' ]
+  - name: status_category
+    description: "Categorized status (ACTIVE, PENDING, INACTIVE)"
+    tests:
+    - not_null
+    - accepted_values:
+        values: [ 'ACTIVE', 'PENDING', 'INACTIVE', 'UNKNOWN' ]
+  - name: region
+    description: "Geographic region based on area"
+    tests:
+    - not_null
+    - accepted_values:
+        values: [ 'SOUTH', 'WEST', 'NORTH', 'OTHER' ]
+  - name: updated_at
+    description: "Date when the record was last updated"
+    tests:
+    - not_null
+
+- name: player_selection_summary
+  description: "Summary statistics and KPIs for player selection data"
+  columns:
+  - name: total_players
+    description: "Total number of unique players"
+  - name: applied_pct
+    description: "Percentage of players with APPLIED status"
+  - name: approved_pct
+    description: "Percentage of players with APPROVED status"
+  - name: rejected_pct
+    description: "Percentage of players with REJECTED status"
+
+- name: player_selection_by_area
+  description: "Player selection breakdown by area with status distribution and approval rates"
+  columns:
+  - name: area
+    description: "Area code"
+    tests:
+    - not_null
+  - name: total_players
+    description: "Total players in this area"
+  - name: approval_rate
+    description: "Approval rate for this area (approved / (approved + rejected))"

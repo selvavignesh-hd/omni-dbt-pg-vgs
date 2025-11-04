@@ -1,0 +1,1 @@
+select * from library.analytics.fct_book_loans

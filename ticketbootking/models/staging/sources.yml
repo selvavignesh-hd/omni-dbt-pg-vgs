@@ -1,0 +1,49 @@
+version: 2
+
+sources:
+- name: ticket_booking
+  description: "Raw data from the ticket booking system"
+  tables:
+  - name: events
+    description: "Raw events data including event details, venue information, and timing"
+    columns:
+    - name: event_id
+      description: "Unique identifier for each event"
+    - name: event_name
+      description: "Name of the event"
+    - name: event_date
+      description: "Date of the event"
+    - name: venue_id
+      description: "Unique identifier for the venue"
+
+  - name: tickets
+    description: "Raw tickets data including ticket details, customer information, and booking status"
+    columns:
+    - name: ticket_id
+      description: "Unique identifier for each ticket"
+    - name: event_id
+      description: "Foreign key to events table"
+    - name: customer_id
+      description: "Foreign key to customers table"
+    - name: order_id
+      description: "Foreign key to orders table"
+
+  - name: customers
+    description: "Raw customers data including personal information, preferences, and engagement metrics"
+    columns:
+    - name: customer_id
+      description: "Unique identifier for each customer"
+    - name: email
+      description: "Customer email address"
+    - name: registration_date
+      description: "Date when customer registered"
+
+  - name: orders
+    description: "Raw orders data including order details, payment information, and status"
+    columns:
+    - name: order_id
+      description: "Unique identifier for each order"
+    - name: customer_id
+      description: "Foreign key to customers table"
+    - name: order_date
+      description: "Date when order was placed"

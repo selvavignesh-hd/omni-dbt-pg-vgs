@@ -1,0 +1,268 @@
+version: 2
+
+models:
+- name: stg_events
+  description: "Staging model for events data with cleaned and standardized fields"
+  columns:
+  - name: event_id
+    description: "Unique identifier for each event"
+  - name: event_name
+    description: "Name of the event"
+  - name: event_type
+    description: "Type of event (concert, sports, theater, etc.)"
+  - name: category
+    description: "Event category"
+  - name: venue_id
+    description: "Unique identifier for the venue"
+  - name: venue_name
+    description: "Name of the venue"
+  - name: venue_city
+    description: "City where the venue is located"
+  - name: venue_state
+    description: "State where the venue is located"
+  - name: venue_country
+    description: "Country where the venue is located"
+  - name: venue_capacity
+    description: "Maximum capacity of the venue"
+  - name: event_date
+    description: "Date of the event"
+  - name: event_time
+    description: "Time of the event"
+  - name: event_datetime
+    description: "Full datetime of the event"
+  - name: duration_minutes
+    description: "Duration of the event in minutes"
+  - name: base_price
+    description: "Base price of the event"
+  - name: currency
+    description: "Currency of the pricing"
+  - name: status
+    description: "Status of the event"
+  - name: is_cancelled
+    description: "Whether the event is cancelled"
+  - name: created_at
+    description: "Timestamp when record was created"
+  - name: updated_at
+    description: "Timestamp when record was last updated"
+
+- name: stg_tickets
+  description: "Staging model for tickets data with cleaned and standardized fields"
+  columns:
+  - name: ticket_id
+    description: "Unique identifier for each ticket"
+  - name: event_id
+    description: "Foreign key to events table"
+    tests:
+    - not_null
+  - name: customer_id
+    description: "Foreign key to customers table"
+  - name: order_id
+    description: "Foreign key to orders table"
+  - name: ticket_type
+    description: "Type of ticket (VIP, standard, etc.)"
+  - name: seat_number
+    description: "Seat number"
+  - name: row_number
+    description: "Row number"
+  - name: section
+    description: "Section of the venue"
+  - name: price_paid
+    description: "Price paid for the ticket"
+  - name: currency
+    description: "Currency of the price"
+  - name: status
+    description: "Status of the ticket"
+  - name: booking_status
+    description: "Booking status of the ticket"
+  - name: purchase_date
+    description: "Date when ticket was purchased"
+  - name: purchase_datetime
+    description: "Full datetime when ticket was purchased"
+  - name: booking_date
+    description: "Date when ticket was booked"
+  - name: booking_datetime
+    description: "Full datetime when ticket was booked"
+  - name: customer_name
+    description: "Name of the customer"
+  - name: customer_email
+    description: "Email of the customer"
+  - name: customer_phone
+    description: "Phone number of the customer"
+  - name: discount_applied
+    description: "Whether discount was applied"
+  - name: discount_amount
+    description: "Amount of discount applied"
+  - name: final_price
+    description: "Final price after discount"
+  - name: payment_method
+    description: "Payment method used"
+  - name: payment_status
+    description: "Payment status"
+  - name: refund_status
+    description: "Refund status"
+  - name: refund_date
+    description: "Date of refund"
+  - name: refund_amount
+    description: "Amount of refund"
+  - name: created_at
+    description: "Timestamp when record was created"
+  - name: updated_at
+    description: "Timestamp when record was last updated"
+  - name: booking_source
+    description: "Source of the booking"
+  - name: promo_code_used
+    description: "Promo code used for the booking"
+
+- name: stg_customers
+  description: "Staging model for customers data with cleaned and standardized fields"
+  columns:
+  - name: customer_id
+    description: "Unique identifier for each customer"
+  - name: first_name
+    description: "First name of the customer"
+  - name: last_name
+    description: "Last name of the customer"
+  - name: full_name
+    description: "Full name of the customer"
+  - name: email
+    description: "Email address of the customer"
+  - name: phone
+    description: "Phone number of the customer"
+  - name: date_of_birth
+    description: "Date of birth of the customer"
+  - name: age
+    description: "Age of the customer"
+  - name: gender
+    description: "Gender of the customer"
+  - name: address_line_1
+    description: "First line of address"
+  - name: address_line_2
+    description: "Second line of address"
+  - name: city
+    description: "City of the customer"
+  - name: state
+    description: "State of the customer"
+  - name: country
+    description: "Country of the customer"
+  - name: postal_code
+    description: "Postal code of the customer"
+  - name: preferred_language
+    description: "Preferred language of the customer"
+  - name: notification_preferences
+    description: "Notification preferences of the customer"
+  - name: marketing_opt_in
+    description: "Whether customer opted in for marketing"
+  - name: customer_status
+    description: "Status of the customer"
+  - name: customer_tier
+    description: "Tier of the customer"
+  - name: registration_date
+    description: "Date when customer registered"
+  - name: registration_datetime
+    description: "Full datetime when customer registered"
+  - name: last_login_date
+    description: "Date of last login"
+  - name: last_login_datetime
+    description: "Full datetime of last login"
+  - name: last_purchase_date
+    description: "Date of last purchase"
+  - name: last_purchase_datetime
+    description: "Full datetime of last purchase"
+  - name: total_orders
+    description: "Total number of orders by customer"
+  - name: total_spent
+    description: "Total amount spent by customer"
+  - name: loyalty_points
+    description: "Loyalty points earned by customer"
+  - name: referral_code
+    description: "Referral code of the customer"
+  - name: referred_by
+    description: "Customer who referred this customer"
+  - name: account_status
+    description: "Account status of the customer"
+  - name: email_verified
+    description: "Whether email is verified"
+  - name: phone_verified
+    description: "Whether phone is verified"
+  - name: created_at
+    description: "Timestamp when record was created"
+  - name: updated_at
+    description: "Timestamp when record was last updated"
+
+- name: stg_orders
+  description: "Staging model for orders data with cleaned and standardized fields"
+  columns:
+  - name: order_id
+    description: "Unique identifier for each order"
+  - name: customer_id
+    description: "Foreign key to customers table"
+  - name: event_id
+    description: "Foreign key to events table"
+  - name: order_number
+    description: "Order number"
+  - name: order_status
+    description: "Status of the order"
+  - name: payment_status
+    description: "Payment status of the order"
+  - name: fulfillment_status
+    description: "Fulfillment status of the order"
+  - name: subtotal
+    description: "Subtotal amount"
+  - name: tax_amount
+    description: "Tax amount"
+  - name: discount_amount
+    description: "Discount amount"
+  - name: shipping_fee
+    description: "Shipping fee"
+  - name: total_amount
+    description: "Total amount of the order"
+  - name: currency
+    description: "Currency of the order"
+  - name: order_date
+    description: "Date when order was placed"
+  - name: order_datetime
+    description: "Full datetime when order was placed"
+  - name: payment_date
+    description: "Date when payment was made"
+  - name: payment_datetime
+    description: "Full datetime when payment was made"
+  - name: fulfillment_date
+    description: "Date when order was fulfilled"
+  - name: fulfillment_datetime
+    description: "Full datetime when order was fulfilled"
+  - name: cancellation_date
+    description: "Date when order was cancelled"
+  - name: cancellation_datetime
+    description: "Full datetime when order was cancelled"
+  - name: payment_method
+    description: "Payment method used"
+  - name: payment_gateway
+    description: "Payment gateway used"
+  - name: transaction_id
+    description: "Transaction ID"
+  - name: customer_name
+    description: "Name of the customer"
+  - name: customer_email
+    description: "Email of the customer"
+  - name: billing_address
+    description: "Billing address"
+  - name: shipping_address
+    description: "Shipping address"
+  - name: order_source
+    description: "Source of the order"
+  - name: promo_code
+    description: "Promo code used"
+  - name: notes
+    description: "Order notes"
+  - name: created_at
+    description: "Timestamp when record was created"
+  - name: updated_at
+    description: "Timestamp when record was last updated"
+  - name: refund_amount
+    description: "Refund amount"
+  - name: refund_date
+    description: "Date of refund"
+  - name: refund_reason
+    description: "Reason for refund"
+  - name: order_priority
+    description: "Priority of the order"

@@ -1,0 +1,146 @@
+version: 2
+
+models:
+- name: daily_sales_summary
+  description: "Daily aggregated sales metrics with comprehensive datetime analysis"
+  columns:
+  - name: sale_date
+    description: "Date of the sale"
+  - name: purchase_week
+    description: "Week when ticket was purchased"
+  - name: purchase_month
+    description: "Month when ticket was purchased"
+  - name: purchase_quarter
+    description: "Quarter when ticket was purchased"
+  - name: purchase_year
+    description: "Year when ticket was purchased"
+  - name: purchase_day_of_week
+    description: "Day of week when ticket was purchased"
+  - name: purchase_hour
+    description: "Hour when ticket was purchased"
+  - name: purchase_season
+    description: "Season when ticket was purchased"
+  - name: purchase_time_of_day
+    description: "Time of day when ticket was purchased"
+  - name: event_type
+    description: "Type of event"
+  - name: category
+    description: "Event category"
+  - name: venue_city
+    description: "City where the venue is located"
+  - name: venue_state
+    description: "State where the venue is located"
+  - name: venue_country
+    description: "Country where the venue is located"
+  - name: customer_tier
+    description: "Tier of the customer"
+  - name: total_tickets_sold
+    description: "Total number of tickets sold"
+  - name: unique_customers
+    description: "Number of unique customers"
+  - name: unique_events
+    description: "Number of unique events"
+  - name: unique_orders
+    description: "Number of unique orders"
+  - name: total_revenue
+    description: "Total revenue from sales"
+  - name: total_discounts
+    description: "Total discount amount"
+  - name: gross_revenue
+    description: "Gross revenue before discounts"
+  - name: avg_ticket_price
+    description: "Average ticket price"
+  - name: median_ticket_price
+    description: "Median ticket price"
+  - name: tickets_with_discount
+    description: "Number of tickets with discount"
+  - name: tickets_refunded
+    description: "Number of tickets refunded"
+  - name: active_tickets
+    description: "Number of active tickets"
+  - name: total_refunds
+    description: "Total refund amount"
+  - name: total_discount_amount
+    description: "Total discount amount applied"
+  - name: avg_days_advance_purchase
+    description: "Average days between purchase and event"
+  - name: min_days_advance_purchase
+    description: "Minimum days between purchase and event"
+  - name: max_days_advance_purchase
+    description: "Maximum days between purchase and event"
+  - name: confirmed_bookings
+    description: "Number of confirmed bookings"
+  - name: pending_bookings
+    description: "Number of pending bookings"
+  - name: cancelled_bookings
+    description: "Number of cancelled bookings"
+  - name: dbt_updated_at
+    description: "Timestamp when dbt model was last updated"
+
+- name: monthly_customer_metrics
+  description: "Monthly aggregated customer engagement and lifecycle metrics"
+  columns:
+  - name: registration_month
+    description: "Month when customer registered"
+  - name: registration_quarter
+    description: "Quarter when customer registered"
+  - name: registration_year
+    description: "Year when customer registered"
+  - name: last_login_month
+    description: "Month of last login"
+  - name: last_login_quarter
+    description: "Quarter of last login"
+  - name: last_login_year
+    description: "Year of last login"
+  - name: last_purchase_month
+    description: "Month of last purchase"
+  - name: last_purchase_quarter
+    description: "Quarter of last purchase"
+  - name: last_purchase_year
+    description: "Year of last purchase"
+  - name: customer_tier
+    description: "Tier of the customer"
+  - name: customer_lifecycle_stage
+    description: "Customer lifecycle stage"
+  - name: gender
+    description: "Gender of the customer"
+  - name: state
+    description: "State of the customer"
+  - name: country
+    description: "Country of the customer"
+  - name: total_customers
+    description: "Total number of customers"
+  - name: verified_customers
+    description: "Number of verified customers"
+  - name: marketing_subscribers
+    description: "Number of marketing subscribers"
+  - name: customers_with_purchases
+    description: "Number of customers with purchases"
+  - name: avg_orders_per_customer
+    description: "Average orders per customer"
+  - name: avg_spent_per_customer
+    description: "Average amount spent per customer"
+  - name: avg_loyalty_points
+    description: "Average loyalty points per customer"
+  - name: avg_days_since_registration
+    description: "Average days since registration"
+  - name: avg_days_since_last_login
+    description: "Average days since last login"
+  - name: avg_days_since_last_purchase
+    description: "Average days since last purchase"
+  - name: total_customer_spend
+    description: "Total amount spent by customers"
+  - name: total_customer_orders
+    description: "Total number of orders by customers"
+  - name: total_loyalty_points
+    description: "Total loyalty points earned"
+  - name: active_customers
+    description: "Number of active customers"
+  - name: at_risk_customers
+    description: "Number of at-risk customers"
+  - name: inactive_customers
+    description: "Number of inactive customers"
+  - name: churned_customers
+    description: "Number of churned customers"
+  - name: dbt_updated_at
+    description: "Timestamp when dbt model was last updated"

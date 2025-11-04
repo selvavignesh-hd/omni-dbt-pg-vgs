@@ -1,0 +1,19 @@
+create or replace TABLE survey_answer (
+    id INTEGER AUTOINCREMENT NOT NULL,
+    survey_id INTEGER NOT NULL,
+    respondent_id VARCHAR(100),
+    answers_json VARCHAR(16000) NOT NULL,
+    created_at TIMESTAMP_NTZ NOT NULL DEFAULT current_timestamp(),
+    created_by INTEGER NULL,
+    CONSTRAINT survey_answer_pkey PRIMARY KEY (id)
+);
+
+insert into survey_answer (survey_id, answers_json, created_at, created_by)
+values
+(1, '{"1":"To show a company assets, liabilities, and equity","2":"Bank loans","3":"Spreading investments across different assets","4":"Compound interest","5":"Office rent","6":"Income Statement","7":"Accounts receivable","8":"Futures","9":"Liquidity","10":"True","11":"Please explain the difference between revenue and profit","12":"A-GDP, B-EPS","13":"Cash received from customers","14":"Return on Investment","15":"List two main functions of central banks"}', current_timestamp(), 1),
+(1, '{"1":"To show a company assets, liabilities, and equity","2":"Cash in hand","3":"Investing all funds in a single stock","4":"Simple interest","5":"Raw material cost","6":"Balance Sheet","7":"Deferred revenue","8":"Options","9":"Risk","10":"False","11":"Please explain the difference between revenue and profit","12":"A-GDP, B-EPS","13":"Payment to suppliers","14":"Return on Inventory","15":"List two main functions of central banks"}', current_timestamp(), 1),
+(1, '{"1":"To show a company assets, liabilities, and equity","2":"Inventory","3":"Buying only government bonds","4":"Flat interest","5":"Direct labor","6":"Cash Flow Statement","7":"Long-term loan","8":"Swaps","9":"Liquidity","10":"True","11":"Please explain the difference between revenue and profit","12":"A-EPS, B-GDP","13":"Issuing shares","14":"Rate of Income","15":"List two main functions of central banks"}', current_timestamp(), 1),
+(1, '{"1":"To show a company assets, liabilities, and equity","2":"Accounts receivable","3":"Speculating on derivatives","4":"Nominal interest","5":"Sales commissions","6":"Statement of Changes in Equity","7":"Accrued expense","8":"Mortgages","9":"Risk","10":"True","11":"Please explain the difference between revenue and profit","12":"A-GDP, B-EPS","13":"Purchasing equipment","14":"Return on Interest","15":"List two main functions of central banks"}', current_timestamp(), 1),
+(1, '{"1":"To show a company assets, liabilities, and equity","2":"Bank loans","3":"Investing all funds in a single stock","4":"Flat interest","5":"Sales commissions","6":"Income Statement","7":"Deferred revenue","8":"Swaps","9":"Liquidity","10":"False","11":"Please explain the difference between revenue and profit","12":"A-GDP, B-EPS","13":"Issuing shares","14":"Rate of Income","15":"List two main functions of central banks"}', current_timestamp(), 1),
+(1, '{"1":"To show a company assets, liabilities, and equity","2":"Bank loans","3":"Investing all funds in a single stock","4":"Flat interest","5":"Sales commissions","6":"Income Statement","7":"Deferred revenue","8":"Swaps","9":"Liquidity","10":"False","11":"Please explain the difference between revenue and profit","12":"A-GDP, B-EPS","13":"Issuing shares","14":"Rate of Income","15":"List two main functions of central banks"}', current_timestamp(), 1),
+(1, '{"1":"To show a company assets, liabilities, and equity","2":"Bank loans","3":"Investing all funds in a single stock","4":"Flat interest","5":"Sales commissions","6":"Income Statement","7":"Deferred revenue","8":"Swaps","9":"Liquidity","10":"False","11":"Please explain the difference between revenue and profit","12":"A-GDP, B-EPS","13":"Issuing shares","14":"Rate of Income","15":"List two main functions of central banks"}', current_timestamp(), 1);

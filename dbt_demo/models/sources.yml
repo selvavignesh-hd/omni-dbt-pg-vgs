@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+- name: filing_wh
+  schema: public
+  description: "Filing WH source"
+  database: FILING_WH
+  tables:
+  - name: orders
+    description: "Orders table"
+  - name: customers
+    description: "Customers table"
+  - name: player_selection
+    description: "Player selection data with status tracking"

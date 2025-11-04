@@ -1,0 +1,548 @@
+version: 2
+
+models:
+- name: dim_events
+  description: "Dimension table for events with comprehensive datetime fields for analytics"
+  columns:
+  - name: event_id
+    description: "Unique identifier for each event"
+  - name: event_name
+    description: "Name of the event"
+  - name: event_description
+    description: "Description of the event"
+  - name: event_type
+    description: "Type of event (concert, sports, theater, etc.)"
+  - name: category
+    description: "Event category"
+  - name: venue_id
+    description: "Unique identifier for the venue"
+  - name: venue_name
+    description: "Name of the venue"
+  - name: venue_city
+    description: "City where the venue is located"
+  - name: venue_state
+    description: "State where the venue is located"
+  - name: venue_country
+    description: "Country where the venue is located"
+  - name: venue_capacity
+    description: "Maximum capacity of the venue"
+  - name: event_date
+    description: "Date of the event"
+  - name: event_time
+    description: "Time of the event"
+  - name: event_datetime
+    description: "Full datetime of the event"
+  - name: duration_minutes
+    description: "Duration of the event in minutes"
+  - name: event_date_truncated
+    description: "Event date truncated to day"
+  - name: event_week
+    description: "Event week"
+  - name: event_month
+    description: "Event month"
+  - name: event_quarter
+    description: "Event quarter"
+  - name: event_year
+    description: "Event year"
+  - name: day_of_week
+    description: "Day of week (0=Sunday, 6=Saturday)"
+  - name: event_hour
+    description: "Hour of the event"
+  - name: event_month_num
+    description: "Month number of the event"
+  - name: event_quarter_num
+    description: "Quarter number of the event"
+  - name: event_year_num
+    description: "Year number of the event"
+  - name: season
+    description: "Season of the event (Winter, Spring, Summer, Fall)"
+  - name: time_of_day
+    description: "Time of day (Morning, Afternoon, Evening, Night)"
+  - name: base_price
+    description: "Base price of the event"
+  - name: currency
+    description: "Currency of the pricing"
+  - name: status
+    description: "Status of the event"
+  - name: is_cancelled
+    description: "Whether the event is cancelled"
+  - name: created_at
+    description: "Timestamp when record was created"
+  - name: updated_at
+    description: "Timestamp when record was last updated"
+  - name: organizer_id
+    description: "ID of the organizer"
+  - name: organizer_name
+    description: "Name of the organizer"
+  - name: max_tickets_per_person
+    description: "Maximum tickets per person"
+  - name: age_restriction
+    description: "Age restriction for the event"
+  - name: is_future_event
+    description: "Whether the event is in the future"
+  - name: is_past_event
+    description: "Whether the event is in the past"
+  - name: is_today_event
+    description: "Whether the event is today"
+  - name: dbt_updated_at
+    description: "Timestamp when dbt model was last updated"
+  - name: dbt_created_at
+    description: "Timestamp when dbt model was created"
+
+- name: dim_customers
+  description: "Dimension table for customers with comprehensive datetime fields for analytics"
+  columns:
+  - name: customer_id
+    description: "Unique identifier for each customer"
+  - name: first_name
+    description: "First name of the customer"
+  - name: last_name
+    description: "Last name of the customer"
+  - name: full_name
+    description: "Full name of the customer"
+  - name: email
+    description: "Email address of the customer"
+  - name: phone
+    description: "Phone number of the customer"
+  - name: date_of_birth
+    description: "Date of birth of the customer"
+  - name: age
+    description: "Age of the customer"
+  - name: gender
+    description: "Gender of the customer"
+  - name: address_line_1
+    description: "First line of address"
+  - name: address_line_2
+    description: "Second line of address"
+  - name: city
+    description: "City of the customer"
+  - name: state
+    description: "State of the customer"
+  - name: country
+    description: "Country of the customer"
+  - name: postal_code
+    description: "Postal code of the customer"
+  - name: preferred_language
+    description: "Preferred language of the customer"
+  - name: notification_preferences
+    description: "Notification preferences of the customer"
+  - name: marketing_opt_in
+    description: "Whether customer opted in for marketing"
+  - name: customer_status
+    description: "Status of the customer"
+  - name: customer_tier
+    description: "Tier of the customer"
+  - name: registration_date
+    description: "Date when customer registered"
+  - name: registration_datetime
+    description: "Full datetime when customer registered"
+  - name: last_login_date
+    description: "Date of last login"
+  - name: last_login_datetime
+    description: "Full datetime of last login"
+  - name: last_purchase_date
+    description: "Date of last purchase"
+  - name: last_purchase_datetime
+    description: "Full datetime of last purchase"
+  - name: registration_date_truncated
+    description: "Registration date truncated to day"
+  - name: registration_week
+    description: "Registration week"
+  - name: registration_month
+    description: "Registration month"
+  - name: registration_quarter
+    description: "Registration quarter"
+  - name: registration_year
+    description: "Registration year"
+  - name: last_login_date_truncated
+    description: "Last login date truncated to day"
+  - name: last_login_week
+    description: "Last login week"
+  - name: last_login_month
+    description: "Last login month"
+  - name: last_login_quarter
+    description: "Last login quarter"
+  - name: last_login_year
+    description: "Last login year"
+  - name: last_purchase_date_truncated
+    description: "Last purchase date truncated to day"
+  - name: last_purchase_week
+    description: "Last purchase week"
+  - name: last_purchase_month
+    description: "Last purchase month"
+  - name: last_purchase_quarter
+    description: "Last purchase quarter"
+  - name: last_purchase_year
+    description: "Last purchase year"
+  - name: days_since_registration
+    description: "Days since registration"
+  - name: days_since_last_login
+    description: "Days since last login"
+  - name: days_since_last_purchase
+    description: "Days since last purchase"
+  - name: customer_lifecycle_stage
+    description: "Customer lifecycle stage (Active, At Risk, Inactive, Churned)"
+  - name: total_orders
+    description: "Total number of orders by customer"
+  - name: total_spent
+    description: "Total amount spent by customer"
+  - name: loyalty_points
+    description: "Loyalty points earned by customer"
+  - name: referral_code
+    description: "Referral code of the customer"
+  - name: referred_by
+    description: "Customer who referred this customer"
+  - name: account_status
+    description: "Account status of the customer"
+  - name: email_verified
+    description: "Whether email is verified"
+  - name: phone_verified
+    description: "Whether phone is verified"
+  - name: created_at
+    description: "Timestamp when record was created"
+  - name: updated_at
+    description: "Timestamp when record was last updated"
+  - name: is_fully_verified
+    description: "Whether customer is fully verified"
+  - name: is_marketing_subscriber
+    description: "Whether customer is subscribed to marketing"
+  - name: has_made_purchase
+    description: "Whether customer has made a purchase"
+  - name: dbt_updated_at
+    description: "Timestamp when dbt model was last updated"
+  - name: dbt_created_at
+    description: "Timestamp when dbt model was created"
+
+- name: fact_ticket_sales
+  description: "Fact table for ticket sales with comprehensive datetime fields for analytics"
+  columns:
+  - name: ticket_id
+    description: "Unique identifier for each ticket"
+  - name: event_id
+    description: "Foreign key to events table"
+    tests:
+    - not_null
+  - name: customer_id
+    description: "Foreign key to customers table"
+  - name: order_id
+    description: "Foreign key to orders table"
+  - name: ticket_type
+    description: "Type of ticket (VIP, standard, etc.)"
+  - name: seat_number
+    description: "Seat number"
+  - name: row_number
+    description: "Row number"
+  - name: section
+    description: "Section of the venue"
+  - name: price_paid
+    description: "Price paid for the ticket"
+  - name: currency
+    description: "Currency of the price"
+  - name: status
+    description: "Status of the ticket"
+  - name: booking_status
+    description: "Booking status of the ticket"
+  - name: purchase_date
+    description: "Date when ticket was purchased"
+  - name: purchase_datetime
+    description: "Full datetime when ticket was purchased"
+  - name: booking_date
+    description: "Date when ticket was booked"
+  - name: booking_datetime
+    description: "Full datetime when ticket was booked"
+  - name: purchase_date_truncated
+    description: "Purchase date truncated to day"
+  - name: purchase_week
+    description: "Purchase week"
+  - name: purchase_month
+    description: "Purchase month"
+  - name: purchase_quarter
+    description: "Purchase quarter"
+  - name: purchase_year
+    description: "Purchase year"
+  - name: booking_date_truncated
+    description: "Booking date truncated to day"
+  - name: booking_week
+    description: "Booking week"
+  - name: booking_month
+    description: "Booking month"
+  - name: booking_quarter
+    description: "Booking quarter"
+  - name: booking_year
+    description: "Booking year"
+  - name: purchase_day_of_week
+    description: "Day of week when ticket was purchased"
+  - name: purchase_hour
+    description: "Hour when ticket was purchased"
+  - name: purchase_month_num
+    description: "Month number when ticket was purchased"
+  - name: purchase_quarter_num
+    description: "Quarter number when ticket was purchased"
+  - name: purchase_year_num
+    description: "Year number when ticket was purchased"
+  - name: booking_day_of_week
+    description: "Day of week when ticket was booked"
+  - name: booking_hour
+    description: "Hour when ticket was booked"
+  - name: booking_month_num
+    description: "Month number when ticket was booked"
+  - name: booking_quarter_num
+    description: "Quarter number when ticket was booked"
+  - name: booking_year_num
+    description: "Year number when ticket was booked"
+  - name: purchase_season
+    description: "Season when ticket was purchased"
+  - name: purchase_time_of_day
+    description: "Time of day when ticket was purchased"
+  - name: customer_name
+    description: "Name of the customer"
+  - name: customer_email
+    description: "Email of the customer"
+  - name: customer_phone
+    description: "Phone number of the customer"
+  - name: discount_applied
+    description: "Whether discount was applied"
+  - name: discount_amount
+    description: "Amount of discount applied"
+  - name: final_price
+    description: "Final price after discount"
+  - name: payment_method
+    description: "Payment method used"
+  - name: payment_status
+    description: "Payment status"
+  - name: refund_status
+    description: "Refund status"
+  - name: refund_date
+    description: "Date of refund"
+  - name: refund_amount
+    description: "Amount of refund"
+  - name: event_name
+    description: "Name of the event"
+  - name: event_type
+    description: "Type of event"
+  - name: category
+    description: "Event category"
+  - name: venue_name
+    description: "Name of the venue"
+  - name: venue_city
+    description: "City where the venue is located"
+  - name: venue_state
+    description: "State where the venue is located"
+  - name: venue_country
+    description: "Country where the venue is located"
+  - name: event_datetime
+    description: "Full datetime of the event"
+  - name: base_price
+    description: "Base price of the event"
+  - name: customer_tier
+    description: "Tier of the customer"
+  - name: registration_date
+    description: "Date when customer registered"
+  - name: total_orders
+    description: "Total number of orders by customer"
+  - name: total_spent
+    description: "Total amount spent by customer"
+  - name: order_status
+    description: "Status of the order"
+  - name: order_payment_status
+    description: "Payment status of the order"
+  - name: order_total_amount
+    description: "Total amount of the order"
+  - name: order_date
+    description: "Date when order was placed"
+  - name: order_datetime
+    description: "Full datetime when order was placed"
+  - name: gross_price
+    description: "Gross price before discount"
+  - name: has_discount
+    description: "Whether ticket has discount"
+  - name: is_refunded
+    description: "Whether ticket is refunded"
+  - name: is_active_ticket
+    description: "Whether ticket is active"
+  - name: days_between_purchase_and_event
+    description: "Days between purchase and event"
+  - name: hours_between_booking_and_purchase
+    description: "Hours between booking and purchase"
+  - name: created_at
+    description: "Timestamp when record was created"
+  - name: updated_at
+    description: "Timestamp when record was last updated"
+  - name: booking_source
+    description: "Source of the booking"
+  - name: promo_code_used
+    description: "Promo code used for the booking"
+  - name: dbt_updated_at
+    description: "Timestamp when dbt model was last updated"
+  - name: dbt_created_at
+    description: "Timestamp when dbt model was created"
+
+- name: fact_orders
+  description: "Fact table for orders with comprehensive datetime fields for analytics"
+  columns:
+  - name: order_id
+    description: "Unique identifier for each order"
+  - name: customer_id
+    description: "Foreign key to customers table"
+    tests:
+    - not_null
+  - name: event_id
+    description: "Foreign key to events table"
+    tests:
+    - not_null
+  - name: order_number
+    description: "Order number"
+  - name: order_status
+    description: "Status of the order"
+  - name: payment_status
+    description: "Payment status of the order"
+  - name: fulfillment_status
+    description: "Fulfillment status of the order"
+  - name: subtotal
+    description: "Subtotal amount"
+  - name: tax_amount
+    description: "Tax amount"
+  - name: discount_amount
+    description: "Discount amount"
+  - name: shipping_fee
+    description: "Shipping fee"
+  - name: total_amount
+    description: "Total amount of the order"
+  - name: currency
+    description: "Currency of the order"
+  - name: order_date
+    description: "Date when order was placed"
+  - name: order_datetime
+    description: "Full datetime when order was placed"
+  - name: payment_date
+    description: "Date when payment was made"
+  - name: payment_datetime
+    description: "Full datetime when payment was made"
+  - name: fulfillment_date
+    description: "Date when order was fulfilled"
+  - name: fulfillment_datetime
+    description: "Full datetime when order was fulfilled"
+  - name: cancellation_date
+    description: "Date when order was cancelled"
+  - name: cancellation_datetime
+    description: "Full datetime when order was cancelled"
+  - name: order_date_truncated
+    description: "Order date truncated to day"
+  - name: order_week
+    description: "Order week"
+  - name: order_month
+    description: "Order month"
+  - name: order_quarter
+    description: "Order quarter"
+  - name: order_year
+    description: "Order year"
+  - name: payment_date_truncated
+    description: "Payment date truncated to day"
+  - name: payment_week
+    description: "Payment week"
+  - name: payment_month
+    description: "Payment month"
+  - name: payment_quarter
+    description: "Payment quarter"
+  - name: payment_year
+    description: "Payment year"
+  - name: order_day_of_week
+    description: "Day of week when order was placed"
+  - name: order_hour
+    description: "Hour when order was placed"
+  - name: order_month_num
+    description: "Month number when order was placed"
+  - name: order_quarter_num
+    description: "Quarter number when order was placed"
+  - name: order_year_num
+    description: "Year number when order was placed"
+  - name: payment_day_of_week
+    description: "Day of week when payment was made"
+  - name: payment_hour
+    description: "Hour when payment was made"
+  - name: payment_month_num
+    description: "Month number when payment was made"
+  - name: payment_quarter_num
+    description: "Quarter number when payment was made"
+  - name: payment_year_num
+    description: "Year number when payment was made"
+  - name: order_season
+    description: "Season when order was placed"
+  - name: order_time_of_day
+    description: "Time of day when order was placed"
+  - name: payment_method
+    description: "Payment method used"
+  - name: payment_gateway
+    description: "Payment gateway used"
+  - name: transaction_id
+    description: "Transaction ID"
+  - name: customer_name
+    description: "Name of the customer"
+  - name: customer_email
+    description: "Email of the customer"
+  - name: billing_address
+    description: "Billing address"
+  - name: shipping_address
+    description: "Shipping address"
+  - name: event_name
+    description: "Name of the event"
+  - name: event_type
+    description: "Type of event"
+  - name: category
+    description: "Event category"
+  - name: venue_name
+    description: "Name of the venue"
+  - name: venue_city
+    description: "City where the venue is located"
+  - name: venue_state
+    description: "State where the venue is located"
+  - name: venue_country
+    description: "Country where the venue is located"
+  - name: event_datetime
+    description: "Full datetime of the event"
+  - name: customer_tier
+    description: "Tier of the customer"
+  - name: registration_date
+    description: "Date when customer registered"
+  - name: total_orders
+    description: "Total number of orders by customer"
+  - name: total_spent
+    description: "Total amount spent by customer"
+  - name: order_source
+    description: "Source of the order"
+  - name: promo_code
+    description: "Promo code used"
+  - name: notes
+    description: "Order notes"
+  - name: created_at
+    description: "Timestamp when record was created"
+  - name: updated_at
+    description: "Timestamp when record was last updated"
+  - name: refund_amount
+    description: "Refund amount"
+  - name: refund_date
+    description: "Date of refund"
+  - name: refund_reason
+    description: "Reason for refund"
+  - name: order_priority
+    description: "Priority of the order"
+  - name: has_discount
+    description: "Whether order has discount"
+  - name: has_refund
+    description: "Whether order has refund"
+  - name: is_completed
+    description: "Whether order is completed"
+  - name: is_cancelled
+    description: "Whether order is cancelled"
+  - name: is_paid
+    description: "Whether order is paid"
+  - name: hours_between_order_and_payment
+    description: "Hours between order and payment"
+  - name: hours_between_payment_and_fulfillment
+    description: "Hours between payment and fulfillment"
+  - name: days_between_order_and_event
+    description: "Days between order and event"
+  - name: dbt_updated_at
+    description: "Timestamp when dbt model was last updated"
+  - name: dbt_created_at
+    description: "Timestamp when dbt model was created"

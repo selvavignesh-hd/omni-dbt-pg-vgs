@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+- name: library_raw
+  description: "Library raw data"
+  schema: library_raw
+  tables:
+  - name: books
+    description: "Books table"
+  - name: members
+    description: "Members table"
+  - name: loans
+    description: "Loans table"

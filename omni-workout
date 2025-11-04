@@ -1,0 +1,102 @@
+
+
+
+CREATE TABLE netflix_titles (
+    show_id TEXT PRIMARY KEY,
+    type TEXT,
+    title TEXT,
+    director TEXT,
+    cast TEXT,
+    country TEXT,
+    date_added DATE,
+    release_year INT,
+    rating TEXT,
+    duration TEXT,
+    listed_in TEXT,
+    description TEXT
+);
+
+
+SELECT
+  CASE 
+    WHEN "Clean Alternative Fuel Vehicle (CAFV) Eligibility" LIKE '%Eligible%' THEN 'Eligible'
+    WHEN "Clean Alternative Fuel Vehicle (CAFV) Eligibility" LIKE '%Not eligible%' THEN 'Not Eligible'
+    WHEN "Clean Alternative Fuel Vehicle (CAFV) Eligibility" LIKE '%unknown%' THEN 'Unknown'
+    ELSE 'Other'
+  END as cafv_status,
+  COUNT(*) as vehicle_count
+FROM electric_vehicle_data
+GROUP BY 
+  CASE 
+    WHEN "Clean Alternative Fuel Vehicle (CAFV) Eligibility" LIKE '%Eligible%' THEN 'Eligible'
+    WHEN "Clean Alternative Fuel Vehicle (CAFV) Eligibility" LIKE '%Not eligible%' THEN 'Not Eligible'
+    WHEN "Clean Alternative Fuel Vehicle (CAFV) Eligibility" LIKE '%unknown%' THEN 'Unknown'
+    ELSE 'Other'
+  END
+
+
+{{result._first.electric_vehicle_data.count}}
+{{result._first.electric_vehicle_data.electric_range_average}}
+{{result._first.electric_vehicle_data.total_unique_models}}
+
+## 🚗 Top makes
+
+| Top Makes | Value |
+|--------|-------|
+| **Total Vehicles** | `{{result._first.electric_vehicle_data.count.raw}}` 📊 |
+| **Average Range** | `{{result._first.electric_vehicle_data.electric_range_average.raw}}` miles 🔋 |
+| **Unique Models** | `{{result._first.electric_vehicle_data.total_unique_models.raw}}` 🚙 |
+
+## 🚗 EV Analytics Dashboard
+
+| Metric | Value |
+|--------|-------|
+| **Total Vehicles** | `{{result._first.electric_vehicle_data.count.raw}}` 📊 |
+| **Average Range** | `{{result._first.electric_vehicle_data.electric_range_average.raw}}` miles 🔋 |
+| **Unique Models** | `{{result._first.electric_vehicle_data.total_unique_models.raw}}` 🚙 |
+
+
+
+
+CREATE TABLE electric_vehicle_data (
+    vin_prefix              VARCHAR(20),
+    county                  VARCHAR(100),
+    city                    VARCHAR(100),
+    state                   VARCHAR(2),
+    postal_code             VARCHAR(10),
+    model_year              INTEGER,
+    make                    VARCHAR(100),
+    model                   VARCHAR(100),
+    ev_type                 VARCHAR(100), 
+    cafv_eligibility        VARCHAR(200),
+    electric_range          INTEGER,
+    base_msrp               INTEGER,
+    legislative_district    INTEGER,
+    dol_vehicle_id          BIGINT,
+    vehicle_location        TEXT,
+    electric_utility        TEXT,
+    census_tract_2020       VARCHAR(20)
+);
+
+CAST(SPLIT_PART(REPLACE(REPLACE("vehicle_location", 'POINT (', ''), ')', ''), ' ', 2) AS FLOAT) AS latitude
+CAST(SPLIT_PART(REPLACE(REPLACE("vehicle_location", 'POINT (', ''), ')', ''), ' ', 1) AS FLOAT) AS longitude
+
+
+To create Statistic Cards such as Total EVs, Average Electric Range, Total Unique Models, Most Popular Make
+
+
+WITH make_stats AS (
+  SELECT
+    make,
+    COUNT(*) as count,
+    ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM electric_vehicle_data), 1) as percentage
+  FROM electric_vehicle_data
+  GROUP BY make
+  ORDER BY count DESC
+  LIMIT 1
+)
+SELECT 
+  make as top_make,
+  count as top_make_count,
+  percentage as top_make_percentage
+FROM make_stats;

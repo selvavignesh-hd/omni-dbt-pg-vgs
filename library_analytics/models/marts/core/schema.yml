@@ -1,0 +1,63 @@
+version: 2
+
+models:
+- name: fct_book_loans
+  description: "Fact table containing all book loan transactions with enriched details"
+  columns:
+  - name: loan_id
+    description: "Primary key for loan transactions"
+    tests:
+    - unique
+    - not_null
+  - name: book_id
+    description: "Foreign key to books dimension"
+    tests:
+    - not_null
+    - relationships:
+        name: relationships
+        arguments:
+          to: ref('dim_books')
+          field: book_id
+  - name: is_overdue
+    description: "Boolean indicating if loan is currently overdue"
+  - name: was_returned_late
+    description: "Boolean indicating if loan was returned after due date"
+
+- name: dim_books
+  description: "Dimension table with book details and loan metrics"
+  columns:
+  - name: book_id
+    tests:
+    - unique
+    - not_null
+  - name: current_status
+    tests:
+    - accepted_values:
+        arguments:
+          values: [ 'available', 'borrowed', 'maintenance' ]
+  - name: total_loans
+    tests:
+    - not_null
+
+- name: dim_members
+  description: "Dimension table with member details and activity metrics"
+  columns:
+  - name: member_id
+    tests:
+    - unique
+    - not_null
+  - name: email
+    tests:
+    - not_null
+
+- name: time_spine
+  description: "Time spine table for date dimensions"
+  config:
+    materialized: table
+    schema: semantic_layer
+  columns:
+  - name: date_day
+    tests:
+    - unique
+  - name: date_week
+  - name: date_month

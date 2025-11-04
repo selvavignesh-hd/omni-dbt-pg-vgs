@@ -1,0 +1,1 @@
+select * from library.analytics.monthly_activity

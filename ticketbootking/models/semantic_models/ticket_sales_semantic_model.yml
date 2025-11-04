@@ -1,0 +1,274 @@
+version: 2
+
+semantic_models:
+- name: ticket_sales
+  description: "Semantic model for ticket sales analytics with comprehensive datetime dimensions"
+  model: ref('fact_ticket_sales')
+
+  defaults:
+    agg_time_dimension: purchase_datetime
+
+  entities:
+  - name: ticket
+    type: primary
+    expr: ticket_id
+    description: "Unique identifier for each ticket"
+
+  - name: event
+    type: foreign
+    expr: event_id
+    description: "Foreign key to events table"
+
+  - name: customer
+    type: foreign
+    expr: customer_id
+    description: "Foreign key to customers table"
+
+  - name: order
+    type: foreign
+    expr: order_id
+    description: "Foreign key to orders table"
+
+  dimensions:
+  # Date and time dimensions
+  - name: purchase_date
+    type: time
+    type_params:
+      time_granularity: day
+    expr: purchase_date_truncated
+    description: "Date when ticket was purchased"
+
+  - name: purchase_week
+    type: time
+    type_params:
+      time_granularity: week
+    expr: purchase_week
+    description: "Week when ticket was purchased"
+
+  - name: purchase_month
+    type: time
+    type_params:
+      time_granularity: month
+    expr: purchase_month
+    description: "Month when ticket was purchased"
+
+  - name: purchase_quarter
+    type: time
+    type_params:
+      time_granularity: quarter
+    expr: purchase_quarter
+    description: "Quarter when ticket was purchased"
+
+  - name: purchase_year
+    type: time
+    type_params:
+      time_granularity: year
+    expr: purchase_year
+    description: "Year when ticket was purchased"
+
+  - name: purchase_datetime
+    type: time
+    type_params:
+      time_granularity: day
+    expr: purchase_datetime
+    description: "Full datetime when ticket was purchased"
+
+  - name: booking_date
+    type: time
+    type_params:
+      time_granularity: day
+    expr: booking_date_truncated
+    description: "Date when ticket was booked"
+
+  - name: event_date
+    type: time
+    type_params:
+      time_granularity: day
+    expr: date_trunc('day', event_datetime)
+    description: "Date of the event"
+
+  # Categorical dimensions
+  - name: event_type
+    type: categorical
+    expr: event_type
+    description: "Type of event (concert, sports, theater, etc.)"
+
+  - name: category
+    type: categorical
+    expr: category
+    description: "Event category"
+
+  - name: venue_city
+    type: categorical
+    expr: venue_city
+    description: "City where the event is held"
+
+  - name: venue_state
+    type: categorical
+    expr: venue_state
+    description: "State where the event is held"
+
+  - name: venue_country
+    type: categorical
+    expr: venue_country
+    description: "Country where the event is held"
+
+  - name: customer_tier
+    type: categorical
+    expr: customer_tier
+    description: "Customer loyalty tier"
+
+  - name: ticket_type
+    type: categorical
+    expr: ticket_type
+    description: "Type of ticket (VIP, standard, etc.)"
+
+  - name: section
+    type: categorical
+    expr: section
+    description: "Seat section"
+
+  - name: payment_method
+    type: categorical
+    expr: payment_method
+    description: "Payment method used"
+
+  - name: booking_source
+    type: categorical
+    expr: booking_source
+    description: "Source of the booking"
+
+  - name: purchase_season
+    type: categorical
+    expr: purchase_season
+    description: "Season when ticket was purchased"
+
+  - name: purchase_time_of_day
+    type: categorical
+    expr: purchase_time_of_day
+    description: "Time of day when ticket was purchased"
+
+  - name: purchase_day_of_week
+    type: categorical
+    expr: purchase_day_of_week
+    description: "Day of week when ticket was purchased"
+
+  # Status dimensions
+  - name: status
+    type: categorical
+    expr: status
+    description: "Ticket status"
+
+  - name: booking_status
+    type: categorical
+    expr: booking_status
+    description: "Booking status"
+
+  - name: payment_status
+    type: categorical
+    expr: payment_status
+    description: "Payment status"
+
+  - name: refund_status
+    type: categorical
+    expr: refund_status
+    description: "Refund status"
+
+  measures:
+  # Count measures
+  - name: total_tickets
+    agg: count
+    description: "Total number of tickets"
+
+  - name: unique_customers
+    agg: count_distinct
+    expr: customer_id
+    description: "Number of unique customers"
+
+  - name: unique_events
+    agg: count_distinct
+    expr: event_id
+    description: "Number of unique events"
+
+  - name: unique_orders
+    agg: count_distinct
+    expr: order_id
+    description: "Number of unique orders"
+
+  # Financial measures
+  - name: total_revenue
+    agg: sum
+    expr: final_price
+    description: "Total revenue from ticket sales"
+
+  - name: total_discounts
+    agg: sum
+    expr: discount_amount
+    description: "Total discount amount applied"
+
+  - name: gross_revenue
+    agg: sum
+    expr: gross_price
+    description: "Gross revenue before discounts"
+
+  - name: total_refunds
+    agg: sum
+    expr: refund_amount
+    description: "Total refund amount"
+
+  - name: avg_ticket_price
+    agg: average
+    expr: final_price
+    description: "Average ticket price"
+
+  - name: median_ticket_price
+    agg: median
+    expr: final_price
+    description: "Median ticket price"
+
+  # Conditional measures
+  - name: tickets_with_discount
+    agg: sum
+    expr: case when has_discount = true then 1 else 0 end
+    description: "Number of tickets with discount applied"
+
+  - name: tickets_refunded
+    agg: sum
+    expr: case when is_refunded = true then 1 else 0 end
+    description: "Number of tickets refunded"
+
+  - name: active_tickets
+    agg: sum
+    expr: case when is_active_ticket = true then 1 else 0 end
+    description: "Number of active tickets"
+
+  - name: confirmed_bookings
+    agg: sum
+    expr: case when booking_status = 'confirmed' then 1 else 0 end
+    description: "Number of confirmed bookings"
+
+  - name: pending_bookings
+    agg: sum
+    expr: case when booking_status = 'pending' then 1 else 0 end
+    description: "Number of pending bookings"
+
+  - name: cancelled_bookings
+    agg: sum
+    expr: case when booking_status = 'cancelled' then 1 else 0 end
+    description: "Number of cancelled bookings"
+
+  # Time-based measures
+  - name: avg_days_advance_purchase
+    agg: average
+    expr: days_between_purchase_and_event
+    description: "Average days between purchase and event"
+
+  - name: min_days_advance_purchase
+    agg: min
+    expr: days_between_purchase_and_event
+    description: "Minimum days between purchase and event"
+
+  - name: max_days_advance_purchase
+    agg: max
+    expr: days_between_purchase_and_event
+    description: "Maximum days between purchase and event"

@@ -1,0 +1,13 @@
+# gitignore file for python dbt project
+venv/
+logs/
+target/
+dbt_packages/
+dbt_internal_packages/
+.env
+.dbt/
+.DS_Store
+.pytest_cache/
+.pytest_cache/v/
+.pytest_cache/v/cache/
+.pytest_cache/v/cache/lastfailed

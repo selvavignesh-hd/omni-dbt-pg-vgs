@@ -1,0 +1,229 @@
+version: 2
+
+semantic_models:
+- name: customers
+  description: "Semantic model for customer analytics with comprehensive datetime dimensions"
+  model: ref('dim_customers')
+
+  defaults:
+    agg_time_dimension: registration_datetime
+
+  entities:
+  - name: customer
+    type: primary
+    expr: customer_id
+    description: "Unique identifier for each customer"
+
+  dimensions:
+  # Date and time dimensions
+  - name: registration_date
+    type: time
+    type_params:
+      time_granularity: day
+    expr: registration_date_truncated
+    description: "Date when customer registered"
+
+  - name: registration_week
+    type: time
+    type_params:
+      time_granularity: week
+    expr: registration_week
+    description: "Week when customer registered"
+
+  - name: registration_month
+    type: time
+    type_params:
+      time_granularity: month
+    expr: registration_month
+    description: "Month when customer registered"
+
+  - name: registration_quarter
+    type: time
+    type_params:
+      time_granularity: quarter
+    expr: registration_quarter
+    description: "Quarter when customer registered"
+
+  - name: registration_year
+    type: time
+    type_params:
+      time_granularity: year
+    expr: registration_year
+    description: "Year when customer registered"
+
+  - name: registration_datetime
+    type: time
+    type_params:
+      time_granularity: day
+    expr: registration_datetime
+    description: "Full datetime when customer registered"
+
+  - name: last_login_date
+    type: time
+    type_params:
+      time_granularity: day
+    expr: last_login_date_truncated
+    description: "Date of last login"
+
+  - name: last_purchase_date
+    type: time
+    type_params:
+      time_granularity: day
+    expr: last_purchase_date_truncated
+    description: "Date of last purchase"
+
+  # Categorical dimensions
+  - name: customer_tier
+    type: categorical
+    expr: customer_tier
+    description: "Customer loyalty tier"
+
+  - name: customer_status
+    type: categorical
+    expr: customer_status
+    description: "Customer account status"
+
+  - name: customer_lifecycle_stage
+    type: categorical
+    expr: customer_lifecycle_stage
+    description: "Customer lifecycle stage"
+
+  - name: gender
+    type: categorical
+    expr: gender
+    description: "Customer gender"
+
+  - name: state
+    type: categorical
+    expr: state
+    description: "Customer state"
+
+  - name: country
+    type: categorical
+    expr: country
+    description: "Customer country"
+
+  - name: preferred_language
+    type: categorical
+    expr: preferred_language
+    description: "Customer preferred language"
+
+  - name: account_status
+    type: categorical
+    expr: account_status
+    description: "Account status"
+
+  # Boolean dimensions
+  - name: is_fully_verified
+    type: categorical
+    expr: is_fully_verified
+    description: "Whether customer is fully verified"
+
+  - name: is_marketing_subscriber
+    type: categorical
+    expr: is_marketing_subscriber
+    description: "Whether customer is subscribed to marketing"
+
+  - name: has_made_purchase
+    type: categorical
+    expr: has_made_purchase
+    description: "Whether customer has made a purchase"
+
+  - name: email_verified
+    type: categorical
+    expr: email_verified
+    description: "Whether email is verified"
+
+  - name: phone_verified
+    type: categorical
+    expr: phone_verified
+    description: "Whether phone is verified"
+
+  measures:
+  # Count measures
+  - name: total_customers
+    agg: count
+    description: "Total number of customers"
+
+  - name: verified_customers
+    agg: sum
+    expr: case when is_fully_verified = true then 1 else 0 end
+    description: "Number of verified customers"
+
+  - name: marketing_subscribers
+    agg: sum
+    expr: case when is_marketing_subscriber = true then 1 else 0 end
+    description: "Number of marketing subscribers"
+
+  - name: customers_with_purchases
+    agg: sum
+    expr: case when has_made_purchase = true then 1 else 0 end
+    description: "Number of customers with purchases"
+
+  # Financial measures
+  - name: total_customer_spend
+    agg: sum
+    expr: total_spent
+    description: "Total amount spent by customers"
+
+  - name: total_customer_orders
+    agg: sum
+    expr: total_orders
+    description: "Total number of orders by customers"
+
+  - name: total_loyalty_points
+    agg: sum
+    expr: loyalty_points
+    description: "Total loyalty points earned"
+
+  - name: avg_customer_spend
+    agg: average
+    expr: total_spent
+    description: "Average amount spent per customer"
+
+  - name: avg_customer_orders
+    agg: average
+    expr: total_orders
+    description: "Average number of orders per customer"
+
+  - name: avg_loyalty_points
+    agg: average
+    expr: loyalty_points
+    description: "Average loyalty points per customer"
+
+  # Time-based measures
+  - name: avg_days_since_registration
+    agg: average
+    expr: days_since_registration
+    description: "Average days since registration"
+
+  - name: avg_days_since_last_login
+    agg: average
+    expr: days_since_last_login
+    description: "Average days since last login"
+
+  - name: avg_days_since_last_purchase
+    agg: average
+    expr: days_since_last_purchase
+    description: "Average days since last purchase"
+
+  # Customer lifecycle measures
+  - name: active_customers
+    agg: sum
+    expr: case when customer_lifecycle_stage = 'Active' then 1 else 0 end
+    description: "Number of active customers"
+
+  - name: at_risk_customers
+    agg: sum
+    expr: case when customer_lifecycle_stage = 'At Risk' then 1 else 0 end
+    description: "Number of at-risk customers"
+
+  - name: inactive_customers
+    agg: sum
+    expr: case when customer_lifecycle_stage = 'Inactive' then 1 else 0 end
+    description: "Number of inactive customers"
+
+  - name: churned_customers
+    agg: sum
+    expr: case when customer_lifecycle_stage = 'Churned' then 1 else 0 end
+    description: "Number of churned customers"

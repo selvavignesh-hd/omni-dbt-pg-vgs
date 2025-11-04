@@ -1,0 +1,12 @@
+ID,NAME,AREA,STATUS,UPDATED_AT
+1,Vignesh,TN,Applied,2025-10-01 00:00:00
+2,Giri,SP,Applied,2025-10-01 00:00:00
+2,Pondi,PN,Processing,2025-10-01 00:00:00
+3,Priya,KA,Approved,2025-10-02 00:00:00
+4,Rajesh,AP,Rejected,2025-10-02 00:00:00
+5,Sunita,KL,Applied,2025-10-03 00:00:00
+6,Arun,TS,Processing,2025-10-03 00:00:00
+7,Meera,GA,Approved,2025-10-04 00:00:00
+8,Vikram,MP,Applied,2025-10-04 00:00:00
+9,Kavya,UP,Processing,2025-10-05 00:00:00
+10,Suresh,RJ,Rejected,2025-10-05 00:00:00

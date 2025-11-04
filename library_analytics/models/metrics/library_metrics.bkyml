@@ -1,0 +1,56 @@
+version: 2
+
+metrics:
+- name: total_loans
+  label: "Total Loans"
+  description: "Total number of book loans"
+  type: simple
+  type_params:
+    measure: total_loans_semantic
+  meta:
+    tribe: "Operations"
+    domain: "Circulation"
+
+- name: overdue_loans
+  label: "Overdue Loans"
+  description: "Number of currently overdue loans"
+  type: simple
+  type_params:
+    measure: overdue_loans_semantic
+  meta:
+    tribe: "Operations"
+    domain: "Circulation"
+
+- name: loan_utilization_rate
+  label: "Loan Utilization Rate"
+  description: "Percentage of books currently on loan"
+  type: ratio
+  type_params:
+    numerator: borrowed_books
+    denominator: total_books
+  meta:
+    tribe: "Operations"
+    domain: "Inventory"
+
+- name: member_engagement_score
+  label: "Member Engagement Score"
+  description: "Average loans per active member"
+  type: simple
+  type_params:
+    measure: avg_loans_per_member
+  meta:
+    tribe: "Membership"
+    domain: "Engagement"
+
+- name: on_time_return_rate
+  label: "On-Time Return Rate"
+  description: "Percentage of loans returned on time"
+  type: derived
+  type_params:
+    expr: "1 - ({{ late_returns }} / {{ total_loans }})"
+    metrics:
+    - name: late_returns
+    - name: total_loans
+  meta:
+    tribe: "Operations"
+    domain: "Circulation"

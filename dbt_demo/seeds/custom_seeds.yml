@@ -1,0 +1,17 @@
+version: 2
+
+seeds:
+- name: areas
+  config:
+    enabled: true
+    # schema: my_seeds_data
+    # database: analytics
+    tags: [ "areas" ]
+
+- name: player_selection
+  description: "Player Selection"
+  config:
+    enabled: true
+    # schema: my_seeds_data
+    # database: analytics
+    tags: [ "player_selection" ]

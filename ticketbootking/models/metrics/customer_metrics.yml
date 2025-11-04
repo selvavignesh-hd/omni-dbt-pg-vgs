@@ -1,0 +1,269 @@
+version: 2
+
+metrics:
+# Customer Volume Metrics
+- name: total_customers
+  description: "Total number of customers"
+  type: simple
+  type_params:
+    measure: total_customers
+  label: "Total Customers"
+
+- name: verified_customers
+  description: "Number of verified customers"
+  type: simple
+  type_params:
+    measure: verified_customers
+  label: "Verified Customers"
+
+- name: marketing_subscribers
+  description: "Number of marketing subscribers"
+  type: simple
+  type_params:
+    measure: marketing_subscribers
+  label: "Marketing Subscribers"
+
+- name: customers_with_purchases
+  description: "Number of customers with purchases"
+  type: simple
+  type_params:
+    measure: customers_with_purchases
+  label: "Customers with Purchases"
+
+# Customer Financial Metrics
+- name: total_customer_spend
+  description: "Total amount spent by customers"
+  type: simple
+  type_params:
+    measure: total_customer_spend
+  label: "Total Customer Spend"
+
+- name: total_customer_orders
+  description: "Total number of orders by customers"
+  type: simple
+  type_params:
+    measure: total_customer_orders
+  label: "Total Customer Orders"
+
+- name: total_loyalty_points
+  description: "Total loyalty points earned"
+  type: simple
+  type_params:
+    measure: total_loyalty_points
+  label: "Total Loyalty Points"
+
+- name: avg_customer_spend
+  description: "Average amount spent per customer"
+  type: simple
+  type_params:
+    measure: avg_customer_spend
+  label: "Average Customer Spend"
+
+- name: avg_customer_orders
+  description: "Average number of orders per customer"
+  type: simple
+  type_params:
+    measure: avg_customer_orders
+  label: "Average Customer Orders"
+
+- name: avg_loyalty_points
+  description: "Average loyalty points per customer"
+  type: simple
+  type_params:
+    measure: avg_loyalty_points
+  label: "Average Loyalty Points"
+
+# Customer Engagement Metrics
+- name: avg_days_since_registration
+  description: "Average days since registration"
+  type: simple
+  type_params:
+    measure: avg_days_since_registration
+  label: "Average Days Since Registration"
+
+- name: avg_days_since_last_login
+  description: "Average days since last login"
+  type: simple
+  type_params:
+    measure: avg_days_since_last_login
+  label: "Average Days Since Last Login"
+
+- name: avg_days_since_last_purchase
+  description: "Average days since last purchase"
+  type: simple
+  type_params:
+    measure: avg_days_since_last_purchase
+  label: "Average Days Since Last Purchase"
+
+# Customer Lifecycle Metrics
+- name: active_customers
+  description: "Number of active customers"
+  type: simple
+  type_params:
+    measure: active_customers
+  label: "Active Customers"
+
+- name: at_risk_customers
+  description: "Number of at-risk customers"
+  type: simple
+  type_params:
+    measure: at_risk_customers
+  label: "At Risk Customers"
+
+- name: inactive_customers
+  description: "Number of inactive customers"
+  type: simple
+  type_params:
+    measure: inactive_customers
+  label: "Inactive Customers"
+
+- name: churned_customers
+  description: "Number of churned customers"
+  type: simple
+  type_params:
+    measure: churned_customers
+  label: "Churned Customers"
+  # Customer Conversion Metrics
+  # - name: customer_verification_rate
+  #   description: "Percentage of customers who are verified"
+  #   type: simple
+  #   type_params:
+  #     measure: customer_verification_rate
+  # type: derived
+  # type_params:
+  #   expr: "{{ metric('verified_customers') }} / {{ metric('total_customers') }} * 100"
+  # label: "Customer Verification Rate (%)"
+
+  # - name: customer_marketing_subscription_rate
+  #   description: "Percentage of customers subscribed to marketing"
+  #   type: simple
+  #   type_params:
+  #     measure: customer_marketing_subscription_rate
+  #   # type_params:
+  #   #   expr: "{{ metric('marketing_subscribers') }} / {{ metric('total_customers') }} * 100"
+  #   label: "Customer Marketing Subscription Rate (%)"
+
+  # - name: customer_purchase_rate
+  #   description: "Percentage of customers who have made purchases"
+  #   type: simple
+  #   type_params:
+  #     measure: customer_purchase_rate
+  #   # type: derived
+  #   # type_params:
+  #   #   expr: "{{ metric('customers_with_purchases') }} / {{ metric('total_customers') }} * 100"
+  #   label: "Customer Purchase Rate (%)"
+
+  # # Customer Lifecycle Distribution
+  # - name: active_customer_rate
+  #   description: "Percentage of customers who are active"
+  #   type: simple
+  #   type_params:
+  #     measure: active_customer_rate
+  #     # type: derived
+  #     # type_params:
+  #     #   expr: "{{ metric('active_customers') }} / {{ metric('total_customers') }} * 100"
+  #   label: "Active Customer Rate (%)"
+
+  # - name: at_risk_customer_rate
+  #   description: "Percentage of customers who are at risk"
+  #   type: simple
+  #   type_params:
+  #     measure: at_risk_customer_rate
+  #   # type: derived
+  #   # type_params:
+  #   #   expr: "{{ metric('at_risk_customers') }} / {{ metric('total_customers') }} * 100"
+  #   label: "At Risk Customer Rate (%)"
+
+  # - name: inactive_customer_rate
+  #   description: "Percentage of customers who are inactive"
+  #   type: simple
+  #   type_params:
+  #     measure: inactive_customer_rate
+  #   # type: derived
+  #   # type_params:
+  #   #   expr: "{{ metric('inactive_customers') }} / {{ metric('total_customers') }} * 100"
+  #   label: "Inactive Customer Rate (%)"
+
+  # - name: churned_customer_rate
+  #   description: "Percentage of customers who have churned"
+  #   type: simple
+  #   type_params:
+  #     measure: churned_customer_rate
+  #   # type: derived
+  #   # type_params:
+  #   #   expr: "{{ metric('churned_customers') }} / {{ metric('total_customers') }} * 100"
+  #   label: "Churned Customer Rate (%)"
+
+  # # Customer Value Metrics
+  # - name: revenue_per_customer_cus
+  #   description: "Average revenue per customer"
+  #   type: simple
+  #   type_params:
+  #     measure: revenue_per_customer
+  #   # type: derived
+  #   # type_params:
+  #   #   expr: "{{ metric('total_customer_spend') }} / {{ metric('total_customers') }}"
+  #   label: "Revenue per Customer"
+
+  # - name: orders_per_customer
+  #   description: "Average orders per customer"
+  #   type: simple
+  #   type_params:
+  #     measure: orders_per_customer
+  #   # type: derived
+  #   # type_params:
+  #   # type_params:
+  #   #   expr: "{{ metric('total_customer_orders') }} / {{ metric('total_customers') }}"
+  #   label: "Orders per Customer"
+
+  # - name: loyalty_points_per_customer
+  #   description: "Average loyalty points per customer"
+  #   type: simple
+  #   type_params:
+  #     measure: loyalty_points_per_customer
+  #   # type: derived
+  #   # type_params:
+  #   #   expr: "{{ metric('total_loyalty_points') }} / {{ metric('total_customers') }}"
+  #   label: "Loyalty Points per Customer"
+
+  # # Customer Growth Metrics
+  # - name: customer_growth_rate_cus
+  #   description: "Month-over-month customer growth rate"
+  #   type: simple
+  #   type_params:
+  #     measure: customer_growth_rate
+  #   # type: derived
+  #   # type_params:
+  #   #   expr: "({{ metric('total_customers') }} - LAG({{ metric('total_customers') }}, 1) OVER (ORDER BY registration_month)) / LAG({{ metric('total_customers') }}, 1) OVER (ORDER BY registration_month) * 100"
+  #   label: "Customer Growth Rate (%)"
+
+  # - name: customer_spend_growth_rate
+  #   description: "Month-over-month customer spend growth rate"
+  #   type: simple
+  #   type_params:
+  #     measure: customer_spend_growth_rate
+  #   # type: derived
+  #   # type_params:
+  #   #   expr: "({{ metric('total_customer_spend') }} - LAG({{ metric('total_customer_spend') }}, 1) OVER (ORDER BY registration_month)) / LAG({{ metric('total_customer_spend') }}, 1) OVER (ORDER BY registration_month) * 100"
+  #   label: "Customer Spend Growth Rate (%)"
+
+  # # Customer Retention Metrics
+  # - name: customer_retention_rate
+  #   description: "Percentage of customers who remain active"
+  #   type: simple
+  #   type_params:
+  #     measure: customer_retention_rate
+  #   # type: derived
+  #   # type_params:
+  #   #   expr: "{{ metric('active_customers') }} / ({{ metric('active_customers') }} + {{ metric('churned_customers') }}) * 100"
+  #   label: "Customer Retention Rate (%)"
+
+  # - name: customer_churn_rate
+  #   description: "Percentage of customers who have churned"
+  #   type: simple
+  #   type_params:
+  #     measure: customer_churn_rate
+  #   # type: derived
+  #   # type_params:
+  #   #   expr: "{{ metric('churned_customers') }} / ({{ metric('active_customers') }} + {{ metric('churned_customers') }}) * 100"
+  #   label: "Customer Churn Rate (%)"

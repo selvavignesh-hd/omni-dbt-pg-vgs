@@ -1,0 +1,269 @@
+version: 2
+
+metrics:
+# Order Volume Metrics
+- name: total_orders
+  description: "Total number of orders"
+  type: simple
+  type_params:
+    measure: total_orders
+  label: "Total Orders"
+
+- name: unique_order_customers
+  description: "Number of unique customers who placed orders"
+  type: simple
+  type_params:
+    measure: unique_customers
+  label: "Unique Order Customers"
+
+- name: unique_order_events
+  description: "Number of unique events with orders"
+  type: simple
+  type_params:
+    measure: unique_events
+  label: "Unique Order Events"
+
+# Order Financial Metrics
+- name: total_order_revenue
+  description: "Total revenue from orders"
+  type: simple
+  type_params:
+    measure: total_revenue
+  label: "Total Order Revenue"
+
+- name: total_order_subtotal
+  description: "Total subtotal from orders"
+  type: simple
+  type_params:
+    measure: total_subtotal
+  label: "Total Order Subtotal"
+
+- name: total_order_tax
+  description: "Total tax from orders"
+  type: simple
+  type_params:
+    measure: total_tax
+  label: "Total Order Tax"
+
+- name: total_order_discounts
+  description: "Total discount amount from orders"
+  type: simple
+  type_params:
+    measure: total_discounts
+  label: "Total Order Discounts"
+
+- name: total_order_shipping
+  description: "Total shipping fees from orders"
+  type: simple
+  type_params:
+    measure: total_shipping
+  label: "Total Order Shipping"
+
+- name: total_order_refunds
+  description: "Total refund amount from orders"
+  type: simple
+  type_params:
+    measure: total_refunds
+  label: "Total Order Refunds"
+
+- name: avg_order_value
+  description: "Average order value"
+  type: simple
+  type_params:
+    measure: avg_order_value
+  label: "Average Order Value"
+
+- name: median_order_value
+  description: "Median order value"
+  type: simple
+  type_params:
+    measure: median_order_value
+  label: "Median Order Value"
+
+# Order Status Metrics
+- name: completed_orders
+  description: "Number of completed orders"
+  type: simple
+  type_params:
+    measure: completed_orders
+  label: "Completed Orders"
+
+- name: cancelled_orders
+  description: "Number of cancelled orders"
+  type: simple
+  type_params:
+    measure: cancelled_orders
+  label: "Cancelled Orders"
+
+- name: paid_orders
+  description: "Number of paid orders"
+  type: simple
+  type_params:
+    measure: paid_orders
+  label: "Paid Orders"
+
+- name: orders_with_discount
+  description: "Number of orders with discount"
+  type: simple
+  type_params:
+    measure: orders_with_discount
+  label: "Orders with Discount"
+
+- name: orders_with_refund
+  description: "Number of orders with refund"
+  type: simple
+  type_params:
+    measure: orders_with_refund
+  label: "Orders with Refund"
+
+# # Order Conversion Metrics
+# - name: order_completion_rate
+#   description: "Percentage of orders that were completed"
+#   type: simple
+#   type_params:
+#     measure: order_completion_rate
+#   # type: derived
+#   # type_params:
+#   # type_params:
+#   #   expr: "{{ metric('completed_orders') }} / {{ metric('total_orders') }} * 100"
+#   label: "Order Completion Rate (%)"
+
+# - name: order_cancellation_rate
+#   description: "Percentage of orders that were cancelled"
+#   type: simple
+#   type_params:
+#     measure: order_cancellation_rate
+#   # type: derived
+#   # type_params:
+#   # type_params:
+#   #   expr: "{{ metric('cancelled_orders') }} / {{ metric('total_orders') }} * 100"
+#   label: "Order Cancellation Rate (%)"
+
+# - name: order_payment_rate
+#   description: "Percentage of orders that were paid"
+#   type: simple
+#   type_params:
+#     measure: order_payment_rate
+#     # type: derived
+#     # type_params:
+#     # expr: "{{ metric('paid_orders') }} / {{ metric('total_orders') }} * 100"
+#   label: "Order Payment Rate (%)"
+
+# - name: order_discount_rate
+#   description: "Percentage of orders with discount"
+#   type: simple
+#   type_params:
+#     measure: order_discount_rate
+#     # type: derived
+#     # type_params:
+#     # expr: "{{ metric('orders_with_discount') }} / {{ metric('total_orders') }} * 100"
+#   label: "Order Discount Rate (%)"
+
+# - name: order_refund_rate
+#   description: "Percentage of orders with refund"
+#   type: simple
+#   type_params:
+#     measure: order_refund_rate
+#     # type: derived
+#     # type_params:
+#     # expr: "{{ metric('orders_with_refund') }} / {{ metric('total_orders') }} * 100"
+#   label: "Order Refund Rate (%)"
+
+# Order Efficiency Metrics
+- name: avg_hours_to_payment
+  description: "Average hours between order and payment"
+  type: simple
+  type_params:
+    measure: avg_hours_to_payment
+  label: "Average Hours to Payment"
+
+- name: avg_hours_to_fulfillment
+  description: "Average hours between payment and fulfillment"
+  type: simple
+  type_params:
+    measure: avg_hours_to_fulfillment
+  label: "Average Hours to Fulfillment"
+
+- name: avg_days_to_event
+  description: "Average days between order and event"
+  type: simple
+  type_params:
+    measure: avg_days_to_event
+  label: "Average Days to Event"
+
+# # Order per Customer Metrics
+# - name: avg_orders_per_customer
+#   description: "Average number of orders per customer"
+#   type: simple
+#   type_params:
+#     measure: avg_orders_per_customer
+#     # type: derived
+#     # type_params:
+#     # type_params:
+#     # expr: "{{ metric('total_orders') }} / {{ metric('unique_order_customers') }}"
+#   label: "Average Orders per Customer"
+
+# - name: avg_orders_per_event
+#   description: "Average number of orders per event"
+#   type: simple
+#   type_params:
+#     measure: avg_orders_per_event
+#     # type: derived
+#     # type_params:
+#     # expr: "{{ metric('total_orders') }} / {{ metric('unique_order_events') }}"
+#   label: "Average Orders per Event"
+
+# # Revenue per Order Metrics
+# - name: revenue_per_order_ord
+#   description: "Average revenue per order"
+#   type: simple
+#   type_params:
+#     measure: revenue_per_order
+#     # type: derived
+#     # type_params:
+#     # expr: "{{ metric('total_order_revenue') }} / {{ metric('total_orders') }}"
+#   label: "Revenue per Order"
+
+# - name: revenue_per_customer_ord
+#   description: "Average revenue per customer"
+#   type: simple
+#   type_params:
+#     measure: revenue_per_customer
+#     # type: derived
+#     # type_params:
+#     # type_params:
+#     # expr: "{{ metric('total_order_revenue') }} / {{ metric('unique_order_customers') }}"
+#   label: "Revenue per Customer"
+
+# - name: revenue_per_event_ord
+#   description: "Average revenue per event"
+#   type: simple
+#   type_params:
+#     measure: revenue_per_event
+#     # type: derived
+#     # type_params:
+#     # type_params:
+#     # expr: "{{ metric('total_order_revenue') }} / {{ metric('unique_order_events') }}"
+#   label: "Revenue per Event"
+
+# # Order Growth Metrics
+# - name: order_growth_rate
+#   description: "Month-over-month order growth rate"
+#   type: simple
+#   type_params:
+#     measure: order_growth_rate
+#   # type: derived
+#   # type_params:
+#   #   expr: "({{ metric('total_orders') }} - LAG({{ metric('total_orders') }}, 1) OVER (ORDER BY order_month)) / LAG({{ metric('total_orders') }}, 1) OVER (ORDER BY order_month) * 100"
+#   label: "Order Growth Rate (%)"
+
+# - name: order_revenue_growth_rate
+#   description: "Month-over-month order revenue growth rate"
+#   type: simple
+#   type_params:
+#     measure: order_revenue_growth_rate
+#   # type: derived
+#   # type_params:
+#   # type_params:
+#   #   expr: "({{ metric('total_order_revenue') }} - LAG({{ metric('total_order_revenue') }}, 1) OVER (ORDER BY order_month)) / LAG({{ metric('total_order_revenue') }}, 1) OVER (ORDER BY order_month) * 100"
+#   label: "Order Revenue Growth Rate (%)"
