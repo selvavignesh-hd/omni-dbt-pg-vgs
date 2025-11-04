@@ -1,5 +1,6 @@
 {{ config(
-    materialized='view'
+    materialized='view',
+    schema='netflix_analytics'
 ) }}
 
 with source as (

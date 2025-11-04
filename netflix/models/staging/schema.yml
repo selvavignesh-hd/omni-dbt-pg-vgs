@@ -17,11 +17,197 @@ models:
     description: "Type of content - Movie or TV Show"
   - name: title
     description: "Title of the show or movie"
+  - name: director
+    description: "Director(s) of the content"
+  - name: casts
+    description: "Cast members of the content"
+  - name: country
+    description: "Country or countries where the content was produced"
+  - name: date_added
+    description: "Date when content was added to Netflix"
   - name: release_year
     description: "Year the content was released"
   - name: rating
     description: "Content rating"
+  - name: duration
+    description: "Original duration field from source"
+  - name: genres
+    description: "Genres or categories the content belongs to"
+  - name: description
+    description: "Description of the content"
   - name: movie_duration_minutes
     description: "Duration in minutes for movies"
   - name: tv_show_seasons
     description: "Number of seasons for TV shows"
+  - name: date_added_parsed
+    description: "Parsed date when content was added to Netflix"
+
+- name: content_summary
+  description: "Summary metrics of Netflix content including totals, averages, and counts"
+  columns:
+  - name: metric
+    description: "Name of the metric being measured"
+  - name: value
+    description: "Value of the metric"
+
+- name: recent_additions
+  description: "Aggregated statistics of content added to Netflix by date"
+  columns:
+  - name: date_added
+    description: "Date when content was added"
+  - name: month_added
+    description: "Month when content was added (truncated to month)"
+  - name: year_added
+    description: "Year when content was added (truncated to year)"
+  - name: total_added
+    description: "Total number of content items added on this date"
+  - name: movies_added
+    description: "Number of movies added on this date"
+  - name: tv_shows_added
+    description: "Number of TV shows added on this date"
+  - name: countries_represented
+    description: "Number of distinct countries represented"
+  - name: ratings_count
+    description: "Number of distinct ratings"
+  - name: avg_movie_duration
+    description: "Average movie duration in minutes"
+  - name: avg_tv_seasons
+    description: "Average number of TV show seasons"
+
+- name: director_statistics
+  description: "Statistics aggregated by director for directors with at least 2 titles"
+  columns:
+  - name: director
+    description: "Director name"
+  - name: total_content
+    description: "Total number of content items directed"
+  - name: unique_titles
+    description: "Number of unique titles"
+  - name: movies_count
+    description: "Number of movies directed"
+  - name: tv_shows_count
+    description: "Number of TV shows directed"
+  - name: earliest_release_year
+    description: "Earliest release year of director's content"
+  - name: latest_release_year
+    description: "Latest release year of director's content"
+  - name: years_active
+    description: "Number of distinct years the director has released content"
+  - name: ratings_used
+    description: "Comma-separated list of ratings used in director's content"
+  - name: avg_movie_duration
+    description: "Average movie duration in minutes"
+  - name: avg_tv_seasons
+    description: "Average number of TV show seasons"
+
+- name: content_by_country
+  description: "Statistics aggregated by country for countries with at least 5 titles"
+  columns:
+  - name: country
+    description: "Country name"
+  - name: total_content
+    description: "Total number of content items from this country"
+  - name: unique_titles
+    description: "Number of unique titles"
+  - name: movies_count
+    description: "Number of movies"
+  - name: tv_shows_count
+    description: "Number of TV shows"
+  - name: years_spanned
+    description: "Number of distinct release years"
+  - name: earliest_release_year
+    description: "Earliest release year"
+  - name: latest_release_year
+    description: "Latest release year"
+  - name: percentage_of_total
+    description: "Percentage of total content from this country"
+
+- name: content_by_rating
+  description: "Statistics aggregated by content rating"
+  columns:
+  - name: rating
+    description: "Content rating"
+  - name: total_count
+    description: "Total number of content items with this rating"
+  - name: movies_count
+    description: "Number of movies with this rating"
+  - name: tv_shows_count
+    description: "Number of TV shows with this rating"
+  - name: percentage_of_total
+    description: "Percentage of total content with this rating"
+  - name: earliest_release_year
+    description: "Earliest release year for this rating"
+  - name: latest_release_year
+    description: "Latest release year for this rating"
+  - name: avg_movie_duration
+    description: "Average movie duration in minutes"
+  - name: avg_tv_seasons
+    description: "Average number of TV show seasons"
+
+- name: content_by_year
+  description: "Statistics aggregated by release year"
+  columns:
+  - name: release_year
+    description: "Year the content was released"
+  - name: total_content
+    description: "Total number of content items released in this year"
+  - name: movies_count
+    description: "Number of movies released in this year"
+  - name: tv_shows_count
+    description: "Number of TV shows released in this year"
+  - name: countries_count
+    description: "Number of distinct countries"
+  - name: ratings_count
+    description: "Number of distinct ratings"
+  - name: avg_movie_duration
+    description: "Average movie duration in minutes"
+  - name: avg_tv_seasons
+    description: "Average number of TV show seasons"
+
+- name: content_by_type
+  description: "Statistics aggregated by content type (Movie or TV Show)"
+  columns:
+  - name: type
+    description: "Content type - Movie or TV Show"
+  - name: total_count
+    description: "Total number of content items of this type"
+  - name: unique_titles
+    description: "Number of unique titles"
+  - name: earliest_release_year
+    description: "Earliest release year"
+  - name: latest_release_year
+    description: "Latest release year"
+  - name: avg_movie_duration_minutes
+    description: "Average movie duration in minutes"
+  - name: avg_tv_show_seasons
+    description: "Average number of TV show seasons"
+  - name: added_last_year
+    description: "Number of items added in the last year"
+  - name: added_last_6_months
+    description: "Number of items added in the last 6 months"
+
+- name: content_by_genre
+  description: "Statistics aggregated by genre"
+  columns:
+  - name: genre
+    description: "Genre name"
+  - name: total_content
+    description: "Total number of content items in this genre"
+  - name: unique_titles
+    description: "Number of unique titles"
+  - name: movies_count
+    description: "Number of movies in this genre"
+  - name: tv_shows_count
+    description: "Number of TV shows in this genre"
+  - name: years_spanned
+    description: "Number of distinct release years"
+  - name: earliest_release_year
+    description: "Earliest release year"
+  - name: latest_release_year
+    description: "Latest release year"
+  - name: percentage_of_total
+    description: "Percentage of total content in this genre"
+  - name: avg_movie_duration
+    description: "Average movie duration in minutes"
+  - name: avg_tv_seasons
+    description: "Average number of TV show seasons"
