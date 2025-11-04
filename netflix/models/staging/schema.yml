@@ -105,6 +105,8 @@ models:
   columns:
   - name: country
     description: "Country name"
+  - name: country_fullname
+    description: "Country full name"
   - name: total_content
     description: "Total number of content items from this country"
   - name: unique_titles
