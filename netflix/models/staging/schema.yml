@@ -46,7 +46,7 @@ models:
   description: "Summary metrics of Netflix content including totals, averages, and counts"
   columns:
   - name: metric
-    description: "Name of the metric being measured"
+    description: "Name of the metric being measured from the netflix data"
   - name: value
     description: "Value of the metric"
 
