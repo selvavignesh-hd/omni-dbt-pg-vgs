@@ -1,0 +1,16 @@
+name: Refresh Model API
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  refresh-model:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Call Refresh API
+      run: |
+        curl -L -X POST 'https://partnerharkendata.omniapp.co/api/v1/models/9d11fd97-a46d-498e-a3ed-211b3bb4c2d7/refresh' \
+          -H 'Content-Type: application/json' \
+          -H 'Authorization: Bearer ${{ secrets.OMNI_API_TOKEN }}'
