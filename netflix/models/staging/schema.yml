@@ -104,7 +104,7 @@ models:
   description: "Statistics aggregated by country for countries with at least 5 titles"
   columns:
   - name: country
-    description: Country name from omni ui
+    description: Country name from omni ui refresh from github action
   - name: country_fullname
     description: "Country full name"
   - name: total_content
