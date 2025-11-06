@@ -32,4 +32,4 @@ group by country_name
 having count(*) >= 5  -- Filter countries with at least 5 titles
 order by total_content desc
 
--- verify schema refresh 0
+-- verify schema refresh 1
